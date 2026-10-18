@@ -19,26 +19,26 @@ SRC = ROOT / "src"
 # Ordered topic list for CVR Chapter 6. A topic is "ready" when its source exists.
 TOPICS = [
     # slug, tier, title, meta line on the home page
-    ("ihd-mi-cabg", 1, "IHD, myocardial infarction, angioplasty and CABG, with cardiac rehab", "6(a). In 11 of 12 papers; the most common long answer."),
-    ("burns", 1, "Burns: acute care, positioning, splinting and inhalation injury", "6(g). In all 12 papers."),
-    ("pad", 1, "Peripheral arterial disease, Buerger's disease and other arterial disorders", "6(a). In all 12 papers."),
-    ("copd", 1, "COPD: chronic bronchitis and emphysema", "6(b). In 9 papers."),
-    ("bronchiectasis", 1, "Bronchiectasis, including after TB", "6(c). In 9 papers."),
-    ("mastectomy", 1, "Mastectomy, lymphoedema and cancer surgery", "6(f). In 9–10 papers."),
-    ("venous", 1, "Varicose veins, venous ulcer, DVT and thrombophlebitis", "6(a). In 8 papers."),
-    ("lung-surgery", 1, "Lung surgery, thoracotomy, chest drain and chest trauma", "6(e). In 8 papers."),
-    ("amputation", 1, "Amputation and stump care", "6(h). In 7 papers."),
-    ("asthma", 1, "Asthma in adults and children", "6(b), 6(d). In 6 papers."),
-    ("diabetes", 2, "Diabetes, diabetic foot, wound healing and diabetes insipidus", "6(h), 6(i)"),
+    ("ihd-mi-cabg", 1, "IHD, myocardial infarction, angioplasty and CABG, with cardiac rehab", "6(a). In 18 of 20 papers; the most common long answer (16 cases)."),
+    ("burns", 1, "Burns: acute care, positioning, splinting and inhalation injury", "6(g). In 19 of 20 papers; 12 long answers."),
+    ("mastectomy", 1, "Mastectomy, lymphoedema and cancer surgery", "6(f). In 16 of 20 papers; 6 long answers."),
+    ("pad", 1, "Peripheral arterial disease, Buerger's disease and other arterial disorders", "6(a). In 18 of 20 papers, mostly ABI and short answers."),
+    ("copd", 1, "COPD: chronic bronchitis and emphysema", "6(b). In 13 of 20 papers."),
+    ("lung-surgery", 1, "Lung surgery, thoracotomy, chest drain and chest trauma", "6(e). In 12 of 20 papers."),
+    ("bronchiectasis", 1, "Bronchiectasis, including after TB", "6(c). In 11 of 20 papers."),
+    ("amputation", 1, "Amputation and stump care", "6(h). In 11 of 20 papers."),
+    ("venous", 1, "Varicose veins, venous ulcer, DVT and thrombophlebitis", "6(a). In 11 of 20 papers."),
+    ("asthma", 1, "Asthma in adults and children", "6(b), 6(d). In 10 of 20 papers."),
+    ("abdominal-surgery", 2, "Abdominal surgery: pre- and post-operative care", "6(f). In 9 of 20 papers, as short answers."),
+    ("diabetes", 2, "Diabetes, diabetic foot, wound healing, pressure sores and diabetes insipidus", "6(h), 6(i)"),
     ("obesity", 2, "Obesity and metabolic syndrome", "6(i)"),
-    ("abdominal-surgery", 2, "Abdominal surgery: pre- and post-operative care", "6(f)"),
-    ("tb", 2, "Tuberculosis, thoracoplasty and post-TB lung disease", "6(c)"),
+    ("tb", 2, "Tuberculosis, thoracoplasty and post-TB lung disease", "6(c). Post-TB disease in 8 long cases."),
     ("ild", 2, "Interstitial and occupational lung disease", "6(b)"),
     ("pleural", 2, "Pleural effusion, pneumothorax, empyema and pleurisy", "6(c)"),
     ("hypertension", 2, "Hypertension", "6(a). Rarely asked alone, but part of many cases."),
     ("valvular-acquired", 2, "Valve disease, heart failure, cardiomyopathy, pacemaker and ICD", "6(a)"),
     ("congenital", 2, "Congenital heart disease: tetralogy of Fallot, ASD, VSD, PDA", "6(a)"),
-    ("pneumonia", 3, "Pneumonia, lung abscess and atelectasis", "6(c)"),
+    ("pneumonia", 3, "Pneumonia, lung abscess and atelectasis", "6(c). One ventilated long case (W24)."),
     ("paediatric", 3, "Neonatal and paediatric respiratory conditions", "6(d)"),
     ("cystic-fibrosis", 3, "Cystic fibrosis", "6(b), 6(d)"),
     ("chest-wall", 3, "Flail chest, scoliosis and kyphosis", "6(j)"),
@@ -271,13 +271,13 @@ def build_index(ready):
         <li><strong>Come back</strong> on day 1, day 7 and day 21, and tick the boxes at the top of the page. Testing yourself again beats re-reading.</li>
       </ol>
       <div class="note note--exam">
-        <span class="note__label">What the real paper looks like (12 papers, 2016–2022)</span>
+        <span class="note__label">What the real paper looks like (20 papers, 2016–2026)</span>
         <p>80 marks in 3 hours. <strong>No MCQs</strong>, even though the syllabus printed a scheme with them.</p>
         <ul>
           <li>Short answers: any 5 of 6 at <strong>3 marks</strong>, and any 5 of 6 at <strong>7 marks</strong>.</li>
           <li>Long answers: two questions, each any 1 of 2 at <strong>15 marks</strong>. Every option is a patient case, and almost all start with ICF.</li>
         </ul>
-        <p>No paper after Winter 2022 has been found yet. Check the latest papers with your college library or seniors.</p>
+        <p>Checked: Summer 2016 to Summer 2026 (20 papers; no Winter 2023 paper was available, and the Winter 2025 copy has only the short answers). The pattern has not changed. Since 2023, ventilated ICU patients appear as long cases (GBS, ARDS, pneumonia) and an ICU question appears in every paper, so study the ICU cards as closely as the Tier 1 topics.</p>
       </div>
     </section>
 
@@ -296,7 +296,7 @@ def build_index(ready):
     </section>
 
     <section class="sec" id="tier3">
-      <h2><span class="n">3</span>Tier 3: short notes, not asked on their own in 2016–2022</h2>
+      <h2><span class="n">3</span>Tier 3: short notes, rarely or never asked on their own (2016–2026)</h2>
       <p>The papers say any syllabus topic can be asked, so these still get their own page.</p>
       <ul class="chapter-list">
 {chr(10).join(tiers[3])}
