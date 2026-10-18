@@ -44,6 +44,46 @@ TOPICS = [
     ("chest-wall", 3, "Flail chest, scoliosis and kyphosis", "6(j)"),
 ]
 
+# Technique cards: short pages on skills, devices, tests and scales, grouped on the home page.
+CARD_GROUPS = [
+    ("icu", "ICU and ventilation", "Syllabus Ch 9. Since 2023 an ICU question has appeared in every paper."),
+    ("airway", "Airway clearance", "Syllabus Ch 4(a–b)."),
+    ("breathing", "Breathing and breathlessness", "Syllabus Ch 4(c–k)."),
+    ("oxygen", "Oxygen, humidification and aerosols", "Syllabus Ch 4(e), 9(d)."),
+    ("exercise", "Exercise testing and exercise physiology", "Syllabus Ch 2(b), 3."),
+    ("assess", "Scales and investigations", "Syllabus Ch 2(a), 10."),
+]
+CARDS = [
+    # slug, group, title, meta line on the home page
+    ("mechanical-ventilation", "icu", "Mechanical ventilation: indications, modes, CPAP and PEEP, complications, weaning", "In 7 papers, including a ventilated long case (S23)."),
+    ("icu-physiotherapy", "icu", "Physiotherapy in the ICU: assessment, safety, equipment and ventilated cases", "In 9 papers; 4 ventilated long cases (S20, S23, S24, W24)."),
+    ("suctioning", "icu", "Suctioning and manual hyperinflation", "In 7 papers; hazards of suctioning is a favourite 3-mark question."),
+    ("positioning", "icu", "Therapeutic positioning, V/Q and the zones of the lung", "In 6 papers."),
+    ("bed-rest", "icu", "Effects of bed rest and early mobilisation", "In 5 papers."),
+    ("airway-clearance", "airway", "Airway clearance techniques: overview and choice", "Asked as a 7-mark overview in 4 papers."),
+    ("acbt", "airway", "ACBT, forced expiration, huffing and autogenic drainage", "In 10 papers, the most-asked technique."),
+    ("postural-drainage", "airway", "Postural drainage, percussion and vibration", "In 2 papers, and part of every airway-clearance answer."),
+    ("airway-devices", "airway", "PEP, flutter, Acapella and other airway-clearance devices", "In 7 papers."),
+    ("breathing-exercises", "breathing", "Breathing exercises, lung expansion and breathing retraining", "In 7 papers, counting pursed-lip breathing."),
+    ("npf-pnf", "breathing", "Neurophysiological facilitation and PNF of respiration", "In 3 papers, all since 2022."),
+    ("respiratory-muscle-training", "breathing", "Respiratory muscle training", "In 3 papers."),
+    ("dyspnoea", "breathing", "Dyspnoea, relieving positions, energy conservation and pacing", "In 8 papers."),
+    ("oxygen-therapy", "oxygen", "Oxygen therapy: devices, targets and hazards", "In 4 papers."),
+    ("aerosol-humidification", "oxygen", "Humidification, nebulisers and inhalers", "In 7 papers."),
+    ("exercise-testing", "exercise", "Exercise testing: contraindications, stop criteria, Bruce, cycle, walk and step tests", "In 9 papers."),
+    ("exercise-physiology", "exercise", "Exercise physiology and prescription: METs, energy systems, intensity, training", "In 6 papers."),
+    ("scales", "assess", "Scales: Borg, mMRC, NYHA, CCS and quality-of-life questionnaires", "In 5 papers."),
+    ("abg", "assess", "ABG interpretation and why patients desaturate", "In 3 papers."),
+    ("breathing-patterns", "assess", "Abnormal breathing patterns and chest signs", "In 2 papers."),
+]
+
+COLLECTIONS = {
+    "ch6": dict(items=TOPICS, dir=("cvr", "ch6"), crumb="Chapter 6", back="All topics and cards",
+                prev="Previous topic", next="Next topic"),
+    "cards": dict(items=CARDS, dir=("cvr", "cards"), crumb="Technique cards", back="All topics and cards",
+                  prev="Previous card", next="Next card"),
+}
+
 # Abbreviations explained automatically at their first use on each page.
 # Page-specific or ambiguous ones (ICD, PT for posterior tibial) are written by hand with <abbr>.
 ABBR = {
@@ -72,6 +112,21 @@ ABBR = {
     "PEEP": "Positive end-expiratory pressure", "SIMV": "Synchronised intermittent mandatory ventilation",
     "IPPB": "Intermittent positive pressure breathing", "CXR": "Chest X-ray", "HRCT": "High-resolution CT scan",
     "DM": "Diabetes mellitus", "HTN": "Hypertension", "CHD": "Coronary heart disease", "CAD": "Coronary artery disease",
+    "FiO₂": "Fraction of inspired oxygen (0.21 = room air)", "RSBI": "Rapid shallow breathing index (breathing rate ÷ tidal volume in litres)",
+    "SBT": "Spontaneous breathing trial", "VAP": "Ventilator-associated pneumonia", "MHI": "Manual hyperinflation (bagging)",
+    "VHI": "Ventilator hyperinflation", "ETT": "Endotracheal tube", "GBS": "Guillain–Barré syndrome",
+    "RASS": "Richmond Agitation–Sedation Scale", "MAP": "Mean arterial pressure", "ICP": "Intracranial pressure",
+    "PSV": "Pressure support ventilation", "HFNC": "High-flow nasal cannula", "MIP": "Maximal inspiratory pressure",
+    "FRC": "Functional residual capacity", "FET": "Forced expiration technique", "TEE": "Thoracic expansion exercises",
+    "MDI": "Metered-dose inhaler", "DPI": "Dry-powder inhaler", "HME": "Heat and moisture exchanger",
+    "ISWT": "Incremental shuttle walk test", "ESWT": "Endurance shuttle walk test", "MET": "Metabolic equivalent",
+    "CCS": "Canadian Cardiovascular Society", "SGRQ": "St George's Respiratory Questionnaire",
+    "CRQ": "Chronic Respiratory Questionnaire", "CAT": "COPD Assessment Test",
+    "MLHFQ": "Minnesota Living with Heart Failure Questionnaire", "KCCQ": "Kansas City Cardiomyopathy Questionnaire",
+    "WIQ": "Walking Impairment Questionnaire", "NPF": "Neurophysiological facilitation of respiration",
+    "PNF": "Proprioceptive neuromuscular facilitation", "RMT": "Respiratory muscle training",
+    "HFCWO": "High-frequency chest wall oscillation", "VO₂max": "Maximal oxygen uptake",
+    "ICU-AW": "ICU-acquired weakness",
 }
 
 
@@ -142,8 +197,9 @@ def toc_items(body):
     return items
 
 
-def build_page(slug, ready_slugs):
-    meta, body = parse_source(SRC / "cvr" / "ch6" / f"{slug}.html")
+def build_page(kind, slug, ready_slugs):
+    coll = COLLECTIONS[kind]
+    meta, body = parse_source(SRC.joinpath(*coll["dir"], f"{slug}.html"))
     body = add_abbr(body)
     up = "../../"
     toc = "\n".join(
@@ -153,13 +209,13 @@ def build_page(slug, ready_slugs):
     i = ready_slugs.index(slug)
     prev_s = ready_slugs[i - 1] if i > 0 else None
     next_s = ready_slugs[i + 1] if i + 1 < len(ready_slugs) else None
-    titles = {s: t for s, _, t, _ in TOPICS}
+    titles = {s: t for s, _, t, _ in coll["items"]}
     nav = []
     if prev_s:
-        nav.append(f'<a class="pagenav__prev" href="{prev_s}.html"><span>Previous topic</span>{html.escape(titles[prev_s])}</a>')
+        nav.append(f'<a class="pagenav__prev" href="{prev_s}.html"><span>{coll["prev"]}</span>{html.escape(titles[prev_s])}</a>')
     if next_s:
-        nav.append(f'<a class="pagenav__next" href="{next_s}.html"><span>Next topic</span>{html.escape(titles[next_s])}</a>')
-    pagenav = f'  <nav class="pagenav" aria-label="Other topics">\n    {"".join(nav)}\n  </nav>\n' if nav else ""
+        nav.append(f'<a class="pagenav__next" href="{next_s}.html"><span>{coll["next"]}</span>{html.escape(titles[next_s])}</a>')
+    pagenav = f'  <nav class="pagenav" aria-label="Other pages">\n    {"".join(nav)}\n  </nav>\n' if nav else ""
 
     out = HEAD.format(title=html.escape(meta["title"]), description=html.escape(meta["description"]), up=up)
     out += f"""<a class="skip" href="#content">Skip to notes</a>
@@ -181,14 +237,14 @@ def build_page(slug, ready_slugs):
 {toc}
   </ol>
   <div class="toc__extra">
-    <a href="{up}index.html">All Chapter 6 topics</a>
+    <a href="{up}index.html">{coll['back']}</a>
   </div>
 </nav>
 
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs"><a href="{up}index.html">CVR Physiotherapy</a> › Chapter 6 › {meta['crumb']}</p>
+      <p class="crumbs"><a href="{up}index.html">CVR Physiotherapy</a> › {coll['crumb']} › {meta['crumb']}</p>
       <h1>{meta['h1']}</h1>
       <p class="lede">{meta['lede']}</p>
 
@@ -224,24 +280,31 @@ def build_page(slug, ready_slugs):
 </body>
 </html>
 """
-    dest = ROOT / "cvr" / "ch6" / f"{slug}.html"
+    dest = ROOT.joinpath(*coll["dir"], f"{slug}.html")
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(out, encoding="utf-8")
 
 
-def build_index(ready):
-    def row(slug, title, note):
-        if slug in ready:
-            return (f'        <li><a class="ttl" href="cvr/ch6/{slug}.html">{html.escape(title)}</a>'
+def build_index(ready, ready_cards):
+    def row(path, is_ready, title, note):
+        if is_ready:
+            return (f'        <li><a class="ttl" href="{path}">{html.escape(title)}</a>'
                     f'<span class="status status--ready">Ready</span><span class="meta">{html.escape(note)}</span></li>')
         return (f'        <li><span class="ttl">{html.escape(title)}</span>'
                 f'<span class="status status--soon">Coming</span><span class="meta">{html.escape(note)}</span></li>')
 
     tiers = {1: [], 2: [], 3: []}
     for slug, tier, title, note in TOPICS:
-        tiers[tier].append(row(slug, title, note))
+        tiers[tier].append(row(f"cvr/ch6/{slug}.html", slug in ready, title, note))
     done = len(ready)
     total = len(TOPICS)
+    card_html = []
+    for key, gtitle, gnote in CARD_GROUPS:
+        rows = [row(f"cvr/cards/{slug}.html", slug in ready_cards, title, note)
+                for slug, grp, title, note in CARDS if grp == key]
+        card_html.append(f'      <h3>{html.escape(gtitle)}</h3>\n      <p class="meta-line">{html.escape(gnote)}</p>\n'
+                         f'      <ul class="chapter-list">\n' + "\n".join(rows) + "\n      </ul>")
+    cards_done = len(ready_cards)
 
     out = HEAD.format(title="CVR Physiotherapy notes",
                       description="Exam notes for MUHS final-year BPTh Cardio-Vascular and Respiratory Physiotherapy, built from the real past papers.",
@@ -257,7 +320,7 @@ def build_index(ready):
     <div class="wrap">
       <p class="crumbs">MUHS IV BPTh</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy</h1>
-      <p class="lede">Chapter 6, Physiotherapy Management. Topics are listed in the order they score in the real papers, not the syllabus order. {done} of {total} topics ready.</p>
+      <p class="lede">Chapter 6, Physiotherapy Management, with topics in the order they score in the real papers, plus technique cards for the skills, devices, tests and scales that the short answers ask about. {done} of {total} topics and {cards_done} of {len(CARDS)} cards ready. <a href="#cards">Jump to the technique cards</a>.</p>
     </div>
   </div>
 
@@ -304,8 +367,9 @@ def build_index(ready):
     </section>
 
     <section class="sec" id="cards">
-      <h2><span class="n">4</span>Technique cards and exam skills</h2>
-      <p>About 4 in 10 short-answer options test techniques rather than conditions. These pages will follow: ACBT, PEP and flutter devices, suctioning, ventilator modes, humidification and nebulisation, oxygen therapy, energy conservation, exercise testing, Borg, NYHA and MET scales, breathing exercises and postural drainage. An answer-writing guide and a practical-exam pack are also planned.</p>
+      <h2><span class="n">4</span>Technique cards</h2>
+      <p>About 4 in 10 short-answer options test a technique, device, test or scale rather than a condition. Each card gives the principle, indications, contraindications, the procedure with doses, and the past questions. {cards_done} of {len(CARDS)} cards ready.</p>
+{chr(10).join(card_html)}
     </section>
 
     <div class="pagefoot">
@@ -321,11 +385,14 @@ def build_index(ready):
 
 
 def main():
-    ready = [s for s, *_ in TOPICS if (SRC / "cvr" / "ch6" / f"{s}.html").exists()]
-    for slug in ready:
-        build_page(slug, ready)
-    build_index(set(ready))
-    print(f"built {len(ready)} of {len(TOPICS)} topics: {', '.join(ready)}")
+    built = {}
+    for kind, coll in COLLECTIONS.items():
+        ready = [s for s, *_ in coll["items"] if SRC.joinpath(*coll["dir"], f"{s}.html").exists()]
+        for slug in ready:
+            build_page(kind, slug, ready)
+        built[kind] = ready
+        print(f"built {len(ready)} of {len(coll['items'])} {kind}: {', '.join(ready)}")
+    build_index(set(built["ch6"]), set(built["cards"]))
 
 
 if __name__ == "__main__":

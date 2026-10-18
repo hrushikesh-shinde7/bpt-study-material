@@ -385,6 +385,7 @@ details.q .qtext { display: block; grid-column: 2; }
 /* ---------- home page ---------- */
 .home-hero { padding: 2rem 0 1rem; }
 .chapter-list { list-style: none; padding: 0; margin: 1rem 0; }
+.meta-line { color: var(--ink-2); font-size: 0.9rem; margin: -0.2rem 0 0.2rem; }
 .chapter-list > li { border-top: 1px solid var(--rule); padding: 0.9rem 0; margin: 0; }
 .chapter-list .ttl { font-weight: 700; }
 .chapter-list .meta { display: block; font-size: 0.9rem; color: var(--ink-2); margin-top: 0.15rem; }

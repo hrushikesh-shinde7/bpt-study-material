@@ -1,0 +1,277 @@
+<!--
+title: Mechanical ventilation
+h1: Mechanical ventilation: indications, modes, CPAP and PEEP, complications, weaning
+crumb: ICU and ventilation
+description: Technique card for MUHS final-year BPTh: indications for mechanical ventilation, ventilator modes (CMV, assist-control, SIMV, pressure control, pressure support, CPAP), PEEP, settings, complications and weaning criteria, with the physiotherapist's role.
+lede: Ventilated patients now appear in long answers (GBS on SIMV in S23, ARDS on SIMV in S24, pneumonia on CMV in W24). You do not set the ventilator, but you must read its settings, know what each mode means for your treatment, and know when the patient is ready to come off it.
+syllabus: Ch 9(c) Mechanical ventilator modes; 9(b) Principles of ICU monitoring
+priority: <span class="tier">High yield.</span> In 7 of 20 papers (2016–2026); an ICU question appears in every paper since 2023.
+asked: <span class="chip chip--laq">LAQ S23</span> <span class="chip chip--7m">7m S17</span><span class="chip chip--7m">W19</span><span class="chip chip--7m">W20</span> <span class="chip chip--3m">3m S22</span><span class="chip chip--3m">W21 ×2</span><span class="chip chip--3m">S24</span>
+split: 3-mark lists (indications, complications, CPAP vs PEEP); 7-mark modes or weaning; part of ventilated long cases
+checked: International weaning consensus (2007); ACCP/ATS liberation guideline (2017); ARDS Network low tidal volume trial (2000); ICU mobilisation safety consensus (2014). Full list under Sources.
+date: 19 October 2026
+review: October 2027
+-->
+  <section class="sec" id="s1">
+    <h2><span class="n">1</span>What it is</h2>
+    <p><strong>Mechanical ventilation</strong> means a machine moves gas into the lungs with positive pressure when the patient cannot breathe well enough alone. It buys time while the cause is treated; it does not cure anything.</p>
+    <ul>
+      <li><strong>Invasive:</strong> through an endotracheal tube (ETT) or a tracheostomy.</li>
+      <li><strong>Non-invasive (NIV):</strong> through a tight face or nasal mask: CPAP or bilevel pressure (BiPAP).</li>
+    </ul>
+    <table class="tbl tbl--stack">
+      <caption>Words on the ventilator screen</caption>
+      <thead><tr><th scope="col">Term</th><th scope="col">Meaning</th><th scope="col">Usual adult value</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">FiO₂</th><td data-label="Meaning">Fraction of oxygen in the gas (0.21 = room air, 1.0 = 100%)</td><td data-label="Usual adult value">The lowest that keeps SpO₂ in the target range</td></tr>
+        <tr><th scope="row">Tidal volume (VT)</th><td data-label="Meaning">Volume of each breath</td><td data-label="Usual adult value"><span class="dose">6–8 mL/kg</span> of predicted body weight; 6 mL/kg in ARDS</td></tr>
+        <tr><th scope="row">Rate (f)</th><td data-label="Meaning">Machine breaths per minute</td><td data-label="Usual adult value">About <span class="dose">12–20</span></td></tr>
+        <tr><th scope="row">PEEP</th><td data-label="Meaning">Pressure kept in the lungs at the end of breathing out</td><td data-label="Usual adult value">About <span class="dose">5 cmH₂O</span>; higher in ARDS</td></tr>
+        <tr><th scope="row">Peak and plateau pressure</th><td data-label="Meaning">Highest airway pressure in a breath; pressure in the alveoli during a pause</td><td data-label="Usual adult value">Plateau kept at <span class="dose">30 cmH₂O or less</span></td></tr>
+        <tr><th scope="row">I:E ratio</th><td data-label="Meaning">Time breathing in : time breathing out</td><td data-label="Usual adult value">About 1:2; longer expiration in COPD and asthma</td></tr>
+        <tr><th scope="row">Trigger</th><td data-label="Meaning">The patient's own effort that starts a breath</td><td data-label="Usual adult value">Set by flow or pressure sensitivity</td></tr>
+        <tr><th scope="row">Pressure support</th><td data-label="Meaning">Extra pressure added to each breath the patient starts</td><td data-label="Usual adult value">5–8 cmH₂O near the end of weaning</td></tr>
+      </tbody>
+    </table>
+    <p>Minute ventilation = tidal volume × rate (about 5–8 L/min at rest).</p>
+  </section>
+
+  <section class="sec" id="s2">
+    <h2><span class="n">2</span>Indications (3 marks in S24)</h2>
+    <table class="tbl tbl--stack">
+      <thead><tr><th scope="col">Group</th><th scope="col">Examples</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Type 1 respiratory failure (low oxygen)</th><td data-label="Examples">PaO₂ below about 60 mmHg despite high oxygen: pneumonia, ARDS, pulmonary oedema</td></tr>
+        <tr><th scope="row">Type 2 respiratory failure (high CO₂ with acidosis)</th><td data-label="Examples">COPD exacerbation when NIV fails, severe asthma, drug overdose</td></tr>
+        <tr><th scope="row">Failure of the breathing pump</th><td data-label="Examples">Guillain–Barré syndrome, myasthenic crisis, high spinal cord injury, flail chest, exhausted breathing muscles</td></tr>
+        <tr><th scope="row">Airway protection</th><td data-label="Examples">Coma (GCS 8 or less), head injury, stroke, poisoning, burns of the airway</td></tr>
+        <tr><th scope="row">Heart and circulation</th><td data-label="Examples">Cardiac arrest, cardiogenic shock, severe pulmonary oedema</td></tr>
+        <tr><th scope="row">Planned</th><td data-label="Examples">During and after major surgery; when heavy sedation or paralysis is needed; to control CO₂ in raised intracranial pressure</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Warning signs that lead to ventilation:</strong> respiratory rate above about 35, exhaustion, falling SpO₂ despite oxygen, rising CO₂ with falling pH, drowsiness, and in neuromuscular disease a falling vital capacity.</p>
+  </section>
+
+  <section class="sec" id="s3">
+    <h2><span class="n">3</span>Modes (7 marks in S17 and W20)</h2>
+    <figure class="fig" aria-labelledby="mv1t">
+      <div class="fig__head">
+        <p class="fig__title" id="mv1t">Airway pressure in four common modes</p>
+        <button class="iconbtn sketch-btn js-sketch" type="button" aria-pressed="false">Show exam sketch</button>
+      </div>
+      <div class="fig__body">
+      <svg viewBox="0 0 360 456" role="img" aria-labelledby="mv1title mv1desc">
+        <title id="mv1title">Pressure–time traces for assist-control, SIMV, pressure support and CPAP</title>
+        <desc id="mv1desc">Four traces of airway pressure against time. Assist-control: every breath is an identical tall machine breath; some are started by a small dip from the patient's effort. SIMV: a few tall machine breaths with small patient breaths between them. Pressure support: every breath starts with a patient dip and gets a flat-topped pressure boost, at irregular intervals set by the patient. CPAP: a flat raised line with small ripples of spontaneous breathing, no machine breaths. In all four the baseline sits above zero because of PEEP.</desc>
+        <g class="d-text d-bold">
+          <text x="10" y="24">Assist-control (A/C, CMV)</text>
+          <text x="10" y="134">SIMV</text>
+          <text x="10" y="244">Pressure support (PSV)</text>
+          <text x="10" y="354">CPAP</text>
+        </g>
+        <g class="d-small d-detail">
+          <text x="10" y="40">every breath is a full machine breath</text>
+          <text x="10" y="150">set machine breaths + the patient's own breaths</text>
+          <text x="10" y="260">patient starts every breath; machine adds pressure</text>
+          <text x="10" y="370">patient does all the breathing at a raised pressure</text>
+        </g>
+        <g class="d-line" style="stroke-dasharray:3 4;stroke-width:1">
+          <line x1="40" y1="108" x2="350" y2="108"/>
+          <line x1="40" y1="218" x2="350" y2="218"/>
+          <line x1="40" y1="328" x2="350" y2="328"/>
+          <line x1="40" y1="438" x2="350" y2="438"/>
+        </g>
+        <g class="d-small">
+          <text x="14" y="112">0</text><text x="14" y="222">0</text><text x="14" y="332">0</text><text x="14" y="442">0</text>
+        </g>
+        <g style="fill:none;stroke:var(--normal-fill);stroke-width:2.5;stroke-linejoin:round">
+          <path d="M40 96H70L88 52H104L110 96H140L144 102L146 96L164 52H180L186 96H216L234 52H250L256 96H284L288 102L290 96L308 52H324L330 96H350"/>
+          <path d="M40 206H70L88 162H104L110 206H128L131 211L133 206Q141 186 149 206H168L171 211L173 206Q181 188 189 206H216L234 162H250L256 206H278L281 211L283 206Q291 186 299 206H350"/>
+          <path d="M40 316H62L65 321L68 316L71 286H94L98 316H120L123 321L126 316L129 286H152L156 316H190L193 321L196 316L199 286H222L226 316H244L247 321L250 316L253 286H276L280 316H310L313 321L316 316L319 286H342L346 316H350"/>
+          <path d="M40 412Q50 404 60 412T80 412T100 412T120 412T140 412T160 412T180 412T200 412T220 412T240 412T260 412T280 412T300 412T320 412T340 412L350 412"/>
+        </g>
+        <g class="d-small d-bold d-t-action">
+          <text x="300" y="44" text-anchor="middle">triggered</text>
+          <text x="160" y="182" text-anchor="middle">own breaths</text>
+        </g>
+        <g class="d-small d-detail">
+          <text x="352" y="200" text-anchor="end">PEEP</text>
+          <text x="352" y="402" text-anchor="end">CPAP level</text>
+        </g>
+      </svg>
+      </div>
+      <figcaption>Blue line = airway pressure. A small dip below the baseline is the patient trying to breathe in (a trigger). The baseline is above zero in all four because of PEEP.</figcaption>
+    </figure>
+    <table class="tbl tbl--stack">
+      <thead><tr><th scope="col">Mode</th><th scope="col">How it works</th><th scope="col">Used for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Controlled mandatory ventilation (CMV)</th><td data-label="How it works">Set volume (or pressure) at a set rate; in strict CMV the patient cannot add breaths</td><td data-label="Used for">Deeply sedated or paralysed patients (W24 pneumonia on CMV)</td></tr>
+        <tr><th scope="row">Assist-control (A/C)</th><td data-label="How it works">Set breath and a minimum rate; if the patient triggers, each extra breath is a full machine breath. Most modern "CMV" settings work this way</td><td data-label="Used for">Resting tired muscles early in illness. Fast breathing can cause over-breathing and air trapping</td></tr>
+        <tr><th scope="row">Synchronised intermittent mandatory ventilation (SIMV)</th><td data-label="How it works">A set number of machine breaths, timed with the patient's effort; between them the patient breathes alone, usually with pressure support</td><td data-label="Used for">Partial support (S20, S23, S24 cases). Once used for weaning by lowering the rate, but weaning is slower than with pressure support or daily breathing trials</td></tr>
+        <tr><th scope="row">Pressure control (PCV)</th><td data-label="How it works">Set pressure and inspiratory time; the volume varies with lung stiffness</td><td data-label="Used for">Limits pressure in stiff lungs (ARDS)</td></tr>
+        <tr><th scope="row">Pressure support (PSV)</th><td data-label="How it works">The patient starts every breath and controls rate and depth; the machine adds a set pressure</td><td data-label="Used for">Comfortable partial support; weaning by lowering the support to 5–8 cmH₂O</td></tr>
+        <tr><th scope="row">CPAP</th><td data-label="How it works">One continuous positive pressure; no machine breaths; the patient does all the breathing</td><td data-label="Used for">Weaning on the ventilator; mask CPAP for sleep apnoea, cardiogenic pulmonary oedema, post-operative collapse</td></tr>
+        <tr><th scope="row">Bilevel NIV (BiPAP)</th><td data-label="How it works">Higher pressure on breathing in (IPAP), lower on breathing out (EPAP), by mask</td><td data-label="Used for">COPD exacerbation with acidosis, after extubation in high-risk patients, neuromuscular disease at night</td></tr>
+      </tbody>
+    </table>
+    <p>Rescue modes in very severe ARDS, such as high-frequency oscillation, are run by the doctors; patients on them are not mobilised out of bed.</p>
+    <details class="why"><summary>Why does the mode matter to a physiotherapist?</summary>
+      <div><p>It tells you how much work the patient's own muscles do. On CMV or A/C at a high rate the muscles are resting and wasting, so you rely on positioning, passive movement and secretion clearance. On SIMV, PSV or CPAP the patient is breathing, so active exercise, breathing exercises and inspiratory muscle training become possible, and you watch for fatigue.</p></div>
+    </details>
+  </section>
+
+  <section class="sec" id="s4" data-toc="CPAP vs PEEP">
+    <h2><span class="n">4</span>CPAP and PEEP (3 marks in W21)</h2>
+    <table class="tbl tbl--stack">
+      <thead><tr><th scope="col">Point</th><th scope="col">CPAP</th><th scope="col">PEEP</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">What it is</th><td data-label="CPAP">A <strong>mode</strong>: positive pressure through the whole breath in a patient who breathes on their own</td><td data-label="PEEP">A <strong>setting</strong>: positive pressure kept at the end of breathing out, added to any mode with machine breaths</td></tr>
+        <tr><th scope="row">Breaths</th><td data-label="CPAP">All spontaneous; no machine breaths</td><td data-label="PEEP">Machine or supported breaths on top of it</td></tr>
+        <tr><th scope="row">How given</th><td data-label="CPAP">Mask, nasal interface or ventilator</td><td data-label="PEEP">Ventilator (or a PEEP valve on a bag)</td></tr>
+        <tr><th scope="row">Typical use</th><td data-label="CPAP">Sleep apnoea, cardiogenic pulmonary oedema, post-op collapse, weaning</td><td data-label="PEEP">Almost every ventilated patient (about 5 cmH₂O); higher in ARDS</td></tr>
+      </tbody>
+    </table>
+    <div class="hook">
+      <div class="hook__label">Memory hook</div>
+      <p class="hook__big">CPAP = PEEP for a patient who breathes alone</p>
+    </div>
+    <p><strong>Effects of both:</strong> raise the functional residual capacity (FRC), keep small airways and alveoli open, improve oxygenation and lung compliance, and reduce collapse. CPAP also lowers the work of breathing and, in heart failure, the load on the left ventricle.</p>
+    <p><strong>Side effects of high levels:</strong> less blood returns to the heart, so BP can fall; over-stretching and pneumothorax (barotrauma); raised intracranial pressure; mask discomfort, air swallowing and pressure sores with CPAP.</p>
+    <p><strong>Do not confuse with auto-PEEP</strong> (intrinsic PEEP): trapped air when the patient cannot breathe out fully before the next breath, common in COPD and asthma; it lowers BP and makes triggering harder.</p>
+  </section>
+
+  <section class="sec" id="s5">
+    <h2><span class="n">5</span>Complications (3 marks in S22 and W21)</h2>
+    <table class="tbl tbl--stack">
+      <thead><tr><th scope="col">System</th><th scope="col">Complications</th><th scope="col">Physio role</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Lungs</th><td data-label="Complications">Ventilator-induced lung injury (over-stretch, high pressure, repeated opening and closing of alveoli); pneumothorax; ventilator-associated pneumonia (VAP); collapse; oxygen toxicity; auto-PEEP; fighting the ventilator</td><td data-label="Physio role" class="t-action">Head-up position, turning, airway clearance; report sudden high pressures or falling SpO₂</td></tr>
+        <tr><th scope="row">Airway</th><td data-label="Complications">Tube blocked by secretions, displaced or pulled out; tube in the right main bronchus; damage to the larynx and trachea, later narrowing (stenosis); sinusitis</td><td data-label="Physio role" class="t-action">Humidification, suction; secure the tube during every turn and transfer</td></tr>
+        <tr><th scope="row">Heart and circulation</th><td data-label="Complications">Lower venous return and cardiac output (hypotension), fluid retention</td><td data-label="Physio role" class="t-action">Check BP before and during treatment</td></tr>
+        <tr><th scope="row">Muscles and joints</th><td data-label="Complications">Weak, wasted diaphragm; ICU-acquired weakness; contractures; pressure injuries; DVT</td><td data-label="Physio role" class="t-action">Early mobilisation, ROM, positioning, inspiratory muscle training</td></tr>
+        <tr><th scope="row">Other</th><td data-label="Complications">Stress ulcers and gut bleeding; delirium; poor sleep; anxiety and post-traumatic stress after ICU</td><td data-label="Physio role" class="t-action">Orientation, communication, day–night routine, follow-up rehab</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Long-term ventilation (W21):</strong> tracheal stenosis or softening, repeated VAP, diaphragm wasting and ventilator dependence, ICU-acquired weakness, contractures, pressure injuries, and psychological effects. Patients who need the ventilator for more than about 1–2 weeks often get a tracheostomy, which is more comfortable, needs less sedation and makes weaning easier.</p>
+  </section>
+
+  <section class="sec" id="s6">
+    <h2><span class="n">6</span>Weaning (7 marks in W19)</h2>
+    <p><strong>Weaning</strong> is the process of freeing the patient from the ventilator. It starts with a daily check of readiness, then a <strong>spontaneous breathing trial (SBT)</strong>, then extubation.</p>
+    <h3>Ready to try? (daily screen)</h3>
+    <ul>
+      <li>The cause of respiratory failure is improving.</li>
+      <li><strong>Oxygenation:</strong> SpO₂ 90% or more on FiO₂ <span class="dose">0.4–0.5 or less</span> and PEEP <span class="dose">5–8 cmH₂O or less</span> (PaO₂/FiO₂ ratio above about 150–200).</li>
+      <li><strong>Circulation:</strong> stable heart rate and BP, no or low-dose drugs to support BP, no active ischaemia.</li>
+      <li><strong>Brain:</strong> awake or easily roused, follows commands; can cough and protect the airway.</li>
+      <li><strong>Breathing:</strong> breathes on their own; pH 7.25 or more; few secretions; no fever, normal electrolytes.</li>
+    </ul>
+    <table class="tbl tbl--stack">
+      <caption>Bedside weaning measures</caption>
+      <thead><tr><th scope="col">Measure</th><th scope="col">Favours weaning</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Rapid shallow breathing index (RSBI = rate ÷ tidal volume in litres)</th><td data-label="Favours weaning">Below <span class="dose">105</span> breaths/min/L</td></tr>
+        <tr><th scope="row">Maximal inspiratory pressure (MIP)</th><td data-label="Favours weaning">Stronger than about −20 to −30 cmH₂O</td></tr>
+        <tr><th scope="row">Vital capacity</th><td data-label="Favours weaning">More than about 10 mL/kg</td></tr>
+        <tr><th scope="row">Minute ventilation</th><td data-label="Favours weaning">Below about 10 L/min</td></tr>
+      </tbody>
+    </table>
+    <details class="why"><summary>Why does a high RSBI predict failure?</summary>
+      <div><p>A tiring patient breathes fast and shallow: rate goes up, tidal volume goes down, so the ratio rises. Example: 35 breaths of 0.25 L gives 140 (likely to fail); 20 breaths of 0.5 L gives 40 (likely to succeed).</p></div>
+    </details>
+    <h3>The breathing trial</h3>
+    <ul>
+      <li><span class="dose">30–120 minutes</span> on low pressure support (5–8 cmH₂O) or a T-piece. The 2017 ACCP/ATS guideline suggests using low pressure support for the trial.</li>
+      <li><strong>Stop the trial if:</strong> breathing rate above 35 for more than 5 minutes; SpO₂ below 90%; heart rate above 140 or a change of more than 20%; systolic BP above 180 or below 90 mmHg; agitation, sweating, use of accessory muscles or see-saw breathing.</li>
+      <li>Passed: the team considers extubation (with a cough and secretion check). High-risk patients may go onto NIV straight after extubation.</li>
+    </ul>
+    <table class="tbl tbl--stack">
+      <caption>How weaning went (international consensus, 2007)</caption>
+      <thead><tr><th scope="col">Group</th><th scope="col">Meaning</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Simple</th><td data-label="Meaning">Extubated after the first trial</td></tr>
+        <tr><th scope="row">Difficult</th><td data-label="Meaning">Needed up to 3 trials or up to 7 days</td></tr>
+        <tr><th scope="row">Prolonged</th><td data-label="Meaning">More than 3 trials or more than 7 days</td></tr>
+      </tbody>
+    </table>
+    <h3>The physiotherapist's part in weaning</h3>
+    <ul>
+      <li>Keep the airways clear: positioning, manual techniques, hyperinflation and suction.</li>
+      <li>Sit the patient upright for trials: the diaphragm works better and lung volume is larger.</li>
+      <li><strong>Inspiratory muscle training</strong> for patients who fail weaning: it strengthens the inspiratory muscles and may shorten weaning (systematic review, 2015).</li>
+      <li>Early mobilisation builds the strength and endurance needed to breathe alone.</li>
+      <li>After extubation: deep breathing, huffing and supported cough, early walking.</li>
+    </ul>
+  </section>
+
+  <section class="sec" id="s7" data-toc="Reading the settings">
+    <h2><span class="n">7</span>Reading the settings in a case</h2>
+    <p>Before treatment, note the mode, FiO₂, PEEP, set and actual tidal volume, rate, peak pressure, SpO₂ and the latest ABG, and whether these are getting better or worse. Rising FiO₂ or PEEP means the lungs are getting worse.</p>
+    <table class="tbl tbl--stack">
+      <caption>The MUHS cases</caption>
+      <thead><tr><th scope="col">Case</th><th scope="col">Settings</th><th scope="col">What it tells you</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">S23: GBS, 45-year-old teacher</th><td data-label="Settings">SIMV, PEEP 6, FiO₂ 0.4</td><td data-label="What it tells you">Moderate support for weak breathing muscles; lungs not badly affected; safe for active treatment as strength returns</td></tr>
+        <tr><th scope="row">S24: ARDS, 30-year-old woman</th><td data-label="Settings">SIMV, PEEP 5, FiO₂ 0.4</td><td data-label="What it tells you">Mild to moderate support; oxygenation improving or mild disease; in-bed and out-of-bed activity possible if other signs are stable</td></tr>
+        <tr><th scope="row">W24: pneumonia, 35-year-old man</th><td data-label="Settings">CMV, PEEP 10, FiO₂ 0.6, day 3</td><td data-label="What it tells you">High support, deeply sedated; at the limit for mobilising; avoid disconnection (closed suction)</td></tr>
+      </tbody>
+    </table>
+    <div class="note note--caution">
+      <span class="note__label">Alarms during treatment</span>
+      <ul>
+        <li><strong>High-pressure alarm:</strong> coughing, secretions, biting the tube, kinked tubing, bronchospasm, the patient fighting the ventilator, or a pneumothorax.</li>
+        <li><strong>Low-pressure or low-volume alarm:</strong> disconnection or a leak around the cuff.</li>
+        <li>If the cause is not obvious, or SpO₂ falls, stop and call the nurse or doctor. Never silence an alarm you do not understand.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="s8">
+    <h2><span class="n">8</span>Exam corner</h2>
+    <h3>Past questions (MUHS, 2016–2026)</h3>
+    <ul class="pq">
+      <li><span class="src">S23 Q4(b), 15 marks</span>45-year-old schoolteacher with Guillain–Barré syndrome on a ventilator: SIMV, PEEP 6, FiO₂ 0.4. Discuss his impairments and ventilator management. Worked on the <a href="icu-physiotherapy.html#s6">ICU physiotherapy card</a>.</li>
+      <li><span class="src">7-mark questions</span>Modes of ventilation and the role of physiotherapy in ICU (S17). Criteria for weaning a patient off the ventilator (W19). Modes of mechanical ventilation (W20).</li>
+      <li><span class="src">3-mark questions</span>Respiratory complications of mechanical ventilation (S22). Complications of long-term mechanical ventilation (W21). Difference between CPAP and PEEP (W21). Three indications for mechanical ventilation (S24).</li>
+    </ul>
+    <h3>Answer skeletons</h3>
+    <ol>
+      <li><span class="marks">[Modes, 7]</span> Definition of mechanical ventilation → the four traces sketched → table of CMV/A-C, SIMV, pressure control, pressure support, CPAP, BiPAP with one use each → one line on why the mode matters to physiotherapy.</li>
+      <li><span class="marks">[Weaning, 7]</span> Definition → readiness criteria (cause, oxygenation, circulation, brain, breathing) → RSBI and MIP with values → breathing trial and its stop criteria → simple, difficult, prolonged → physiotherapy role.</li>
+      <li><span class="marks">[CPAP vs PEEP, 3]</span> Three rows: mode vs setting, spontaneous vs machine breaths, typical use.</li>
+    </ol>
+    <div class="selftest">
+      <h3>Test yourself</h3>
+      <details class="q"><summary><span class="qtag">3 m</span><span class="qtext">Give three differences between CPAP and PEEP.</span></summary>
+        <div class="a"><p>CPAP is a mode, PEEP is a setting. CPAP applies pressure throughout the breath in a patient who breathes alone, with no machine breaths; PEEP is pressure kept at the end of expiration during machine or supported breaths. CPAP is often given by mask (sleep apnoea, pulmonary oedema); PEEP is given through the ventilator to almost every ventilated patient.</p></div>
+      </details>
+      <details class="q"><summary><span class="qtag">3 m</span><span class="qtext">A patient on a breathing trial breathes 32 times a minute with a tidal volume of 0.4 L. Calculate the RSBI and interpret it.</span></summary>
+        <div class="a"><p>32 ÷ 0.4 = 80 breaths/min/L. Below 105, so it favours successful weaning (other criteria must also be met).</p></div>
+      </details>
+      <details class="q"><summary><span class="qtag">MCQ</span><span class="qtext">In which mode does the patient breathe spontaneously between a set number of machine breaths?<span class="mcq-opts"><span>A. CMV</span><span>B. SIMV</span><span>C. CPAP</span><span>D. Pressure control</span></span></span></summary>
+        <div class="a"><p><strong>B.</strong> SIMV gives a set number of synchronised machine breaths; between them the patient breathes alone, usually with pressure support.</p></div>
+      </details>
+      <details class="q"><summary><span class="qtag">MCQ</span><span class="qtext">During a spontaneous breathing trial, which finding means the trial should be stopped?<span class="mcq-opts"><span>A. SpO₂ 94%</span><span>B. Breathing rate 38 for 6 minutes</span><span>C. Heart rate rising from 90 to 100</span><span>D. Systolic BP 130 mmHg</span></span></span></summary>
+        <div class="a"><p><strong>B.</strong> A rate above 35 for more than 5 minutes means the patient is tiring.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="sec sources" id="sources">
+    <h2><span class="n">&nbsp;</span>Sources</h2>
+    <p>Notes written in original words. The mode diagram is a simplified drawing made for this site.</p>
+    <ol>
+      <li>MUHS BPTh syllabus (2012) and MUHS IV BPTh question papers 2016–2026 (<a href="https://www.muhsonline.com/bpt.html">muhsonline.com</a>, unofficial archive; <a href="https://dpcop.in/past-year-question-paper/">Dhole Patil College of Physiotherapy past-paper page</a>).</li>
+      <li>Boles JM, et al. Weaning from mechanical ventilation. <em>Eur Respir J</em> 2007;29:1033–56 (international consensus conference).</li>
+      <li>Schmidt GA, et al. Liberation from mechanical ventilation in critically ill adults: an official ATS/ACCP clinical practice guideline. <em>Am J Respir Crit Care Med</em> 2017; Ouellette DR, et al. <em>Chest</em> 2017.</li>
+      <li>Yang KL, Tobin MJ. A prospective study of indexes predicting the outcome of trials of weaning from mechanical ventilation. <em>N Engl J Med</em> 1991;324:1445–50.</li>
+      <li>The Acute Respiratory Distress Syndrome Network. Ventilation with lower tidal volumes as compared with traditional tidal volumes for acute lung injury and ARDS. <em>N Engl J Med</em> 2000;342:1301–8.</li>
+      <li>Hodgson CL, et al. Expert consensus and recommendations on safety criteria for active mobilization of mechanically ventilated critically ill adults. <em>Crit Care</em> 2014;18:658.</li>
+      <li>Elkins M, Dentice R. Inspiratory muscle training facilitates weaning from mechanical ventilation among patients in the intensive care unit: a systematic review. <em>J Physiother</em> 2015.</li>
+      <li>Structure and classical content: Hough, <em>Physiotherapy in Respiratory and Cardiac Care</em>; Main &amp; Denehy (2016); Pryor &amp; Prasad (2008).</li>
+    </ol>
+    <div class="pagefoot">
+      <p>Educational notes for exam preparation. Not medical advice.</p>
+      <p>Version 1. Content checked 19 October 2026. Next review October 2027.</p>
+    </div>
+  </section>

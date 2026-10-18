@@ -6,8 +6,8 @@ Reader: Digvijay, final-year BPTh (MUHS, 2012 syllabus), studying only from thes
 
 1. Read the topic's past questions in `Study Material/Past Papers/CVR 51413/question-bank.md` and the relevant research notes.
 2. Verify every number that depends on a guideline (thresholds, doses, grades, timings) against the primary document or two independent sources. Unverified numbers are left out, never guessed. Note anything checked only via secondary reproductions in the page's Sources section.
-3. Write `src/cvr/ch6/<slug>.html`: a metadata comment, then the `<section class="sec">` blocks, ending with the Sources section.
-4. Run `python3 tools/build.py`. This builds the page and updates `index.html`.
+3. Write `src/cvr/ch6/<slug>.html` (condition pages) or `src/cvr/cards/<slug>.html` (technique cards): a metadata comment, then the `<section class="sec">` blocks, ending with the Sources section. Add new slugs to `TOPICS` or `CARDS` in `tools/build.py`.
+4. Run `python3 tools/build.py`. This builds every ready page (Chapter 6 and cards) and updates `index.html`.
 5. Check that the HTML parses and that the page looks right at 390 px.
 6. Commit with the attribution line and push. GitHub Pages redeploys in about a minute.
 
@@ -21,7 +21,7 @@ crumb: 6(g) Burns
 description: One sentence for search and previews.
 lede: Two sentences: why this topic matters in the exam and the routine every answer follows.
 syllabus: Ch 6(g) ...
-priority: <span class="tier">Tier 1.</span> In N of 12 papers (2016–2022). ...
+priority: <span class="tier">Tier 1.</span> In N of 20 papers (2016–2026). ...
 asked: <span class="chip chip--laq">LAQ S16</span>... <span class="chip chip--7m">7m W16</span>... <span class="chip chip--3m">3m S17</span>...
 split: Usual mark splits
 checked: Named, dated guidelines and sources
@@ -43,6 +43,14 @@ Tier 1 and Tier 2 use the 16 numbered sections (ids s1–s16, then `sources`). S
 Tier 3 pages cover several conditions. Each condition gets seven parts as `<h3>` blocks inside one numbered section per condition: Definition and types · Causes and key features (clinical and X-ray) · Medical or surgical point that matters for PT · ICF summary · PT management by key problem, with doses · Precautions · Exam points. The page ends with a shared exam corner and Sources.
 
 Use `data-toc="Short label"` on a section when its heading is too long for the contents menu.
+
+## Technique cards
+
+Cards live in `src/cvr/cards/` and build to `cvr/cards/`. They cover skills, devices, tests and scales that short answers ask about (about 4 in 10 options). Use the same metadata keys; `crumb` is the card group (for example "ICU and ventilation") and `priority` starts with a short label such as `<span class="tier">High yield.</span>`. Sections are numbered in order but chosen to fit the technique, usually:
+
+What it is (definition) · How it works (physiological principle) · Indications · Contraindications and precautions · Procedure and dose · Comparison, advantages and disadvantages · Exam corner (past questions with session tags, answer skeleton, Test yourself)
+
+Put the question tag in the heading of the section that answers it (for example "Hazards and complications (3 marks in W16, S17, S18, W19, S26)"). Link back to the condition pages instead of repeating long content, and add the card to the "Technique cards for this topic" line on related condition pages.
 
 ## Writing rules
 
