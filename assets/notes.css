@@ -408,3 +408,11 @@ details.q .qtext { display: block; grid-column: 2; }
 @media (prefers-reduced-motion: reduce) {
   .toc { transition: none !important; }
 }
+
+/* ---------- previous / next topic ---------- */
+.pagenav { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 3rem 0 1rem; }
+@media (min-width: 640px) { .pagenav { grid-template-columns: 1fr 1fr; } }
+.pagenav a { display: block; padding: 0.8rem 1rem; border: 1px solid var(--rule); border-radius: var(--radius-m); text-decoration: none; color: var(--ink); font-weight: 700; line-height: 1.35; }
+.pagenav a:hover { background: var(--panel); }
+.pagenav a span { display: block; font-size: 0.82rem; font-weight: 700; color: var(--ink-2); margin-bottom: 0.2rem; }
+.pagenav__next { text-align: right; grid-column: -2; }
