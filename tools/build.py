@@ -44,6 +44,57 @@ TOPICS = [
     ("chest-wall", 3, "Flail chest, scoliosis and kyphosis", "6(j)"),
 ]
 
+# Abbreviations explained automatically at their first use on each page.
+# Page-specific or ambiguous ones (ICD, PT for posterior tibial) are written by hand with <abbr>.
+ABBR = {
+    "PT": "Physiotherapy", "ICF": "International Classification of Functioning, Disability and Health",
+    "ROM": "Range of motion", "ADL": "Activities of daily living", "ACBT": "Active cycle of breathing technique",
+    "DVT": "Deep vein thrombosis", "PE": "Pulmonary embolism", "COPD": "Chronic obstructive pulmonary disease",
+    "ICU": "Intensive care unit", "TBSA": "Total body surface area", "ABG": "Arterial blood gas",
+    "ECG": "Electrocardiogram", "HR": "Heart rate", "BP": "Blood pressure", "RR": "Respiratory rate",
+    "RPE": "Rating of perceived exertion (Borg scale)", "METs": "Metabolic equivalents (1 MET = resting energy use)",
+    "PFT": "Pulmonary function test", "ABI": "Ankle–brachial index", "ABPI": "Ankle–brachial pressure index",
+    "PAD": "Peripheral arterial disease", "PCI": "Percutaneous coronary intervention (angioplasty)",
+    "CABG": "Coronary artery bypass grafting", "MI": "Myocardial infarction", "IHD": "Ischaemic heart disease",
+    "EF": "Ejection fraction", "MCP": "Metacarpophalangeal", "PIP": "Proximal interphalangeal",
+    "VAS": "Visual analogue scale", "NRS": "Numeric rating scale", "FIM": "Functional Independence Measure",
+    "ARDS": "Acute respiratory distress syndrome", "mMRC": "Modified Medical Research Council dyspnoea scale",
+    "NYHA": "New York Heart Association", "6MWT": "Six-minute walk test", "PEP": "Positive expiratory pressure",
+    "IMT": "Inspiratory muscle training", "TENS": "Transcutaneous electrical nerve stimulation",
+    "LAQ": "Long-answer question", "BMI": "Body mass index", "HbA1c": "Glycated haemoglobin (3-month blood sugar)",
+    "TB": "Tuberculosis", "ILD": "Interstitial lung disease", "GTN": "Glyceryl trinitrate (nitroglycerin)",
+    "LAD": "Left anterior descending artery", "LIMA": "Left internal mammary artery", "RIMA": "Right internal mammary artery",
+    "FEV1": "Forced expiratory volume in 1 second", "FVC": "Forced vital capacity", "SpO₂": "Oxygen saturation by pulse oximeter",
+    "PaO₂": "Arterial oxygen pressure", "PaCO₂": "Arterial carbon dioxide pressure", "HRR": "Heart-rate reserve",
+    "1RM": "One-repetition maximum", "CR": "Cardiac rehabilitation", "STG": "Short-term goals", "LTG": "Long-term goals",
+    "MRM": "Modified radical mastectomy", "BKA": "Below-knee amputation", "AKA": "Above-knee amputation",
+    "CVC": "Central venous catheter", "NIV": "Non-invasive ventilation", "CPAP": "Continuous positive airway pressure",
+    "PEEP": "Positive end-expiratory pressure", "SIMV": "Synchronised intermittent mandatory ventilation",
+    "IPPB": "Intermittent positive pressure breathing", "CXR": "Chest X-ray", "HRCT": "High-resolution CT scan",
+    "DM": "Diabetes mellitus", "HTN": "Hypertension", "CHD": "Coronary heart disease", "CAD": "Coronary artery disease",
+}
+
+
+def add_abbr(body):
+    """Wrap the first plain-text use of each known abbreviation in <abbr>."""
+    done = set(re.findall(r"<abbr[^>]*>([^<]+)</abbr>", body))
+    parts = re.split(r"(<svg.*?</svg>|<abbr.*?</abbr>|<summary.*?</summary>|<h2.*?</h2>|<[^>]+>)", body, flags=re.S)
+    for i in range(0, len(parts), 2):
+        text = parts[i]
+        hits = []
+        for ab, full in ABBR.items():
+            if ab in done:
+                continue
+            m = re.search(r"(?<![\w-])" + re.escape(ab) + r"(?![\w-])", text)
+            if m and not any(m.start() < e and s < m.end() for s, e, _, _ in hits):
+                hits.append((m.start(), m.end(), ab, full))
+        for s, e, ab, full in sorted(hits, reverse=True):
+            text = text[:s] + f'<abbr title="{html.escape(full)}">{ab}</abbr>' + text[e:]
+            done.add(ab)
+        parts[i] = text
+    return "".join(parts)
+
+
 TRACE = "M0 9" + "h20q4 -3 8 0h8l3 2l3 -10l3 12l3 -4h12q6 -5 12 0h28" * 10
 
 HEAD = """<!doctype html>
@@ -93,6 +144,7 @@ def toc_items(body):
 
 def build_page(slug, ready_slugs):
     meta, body = parse_source(SRC / "cvr" / "ch6" / f"{slug}.html")
+    body = add_abbr(body)
     up = "../../"
     toc = "\n".join(
         f'    <li><a href="#{sid}"><span class="n">{num}</span>{html.escape(label)}</a></li>'
