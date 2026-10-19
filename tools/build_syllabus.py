@@ -1113,7 +1113,8 @@ def retext(body):
     return "".join(parts)
 
 
-def write_page(page, prev_p, next_p, asm):
+def page_body(page, asm):
+    """The finished notes of one page (sections, then sources), with links resolved; also used by print_syllabus.py."""
     data = asm.pages[page.slug]
     meta = page_meta(page)
     srcs = [s for s in [page.base] + sorted(data["srcs"] - {page.base}) if s]
@@ -1125,7 +1126,12 @@ def write_page(page, prev_p, next_p, asm):
              f"      <p>Syllabus-order version. Content checked {meta['date']}. Next review {meta['review']}.</p>\n    </div>\n  </section>")
     body = canon_links(body, "cards", None)
     body = asm.resolve(page.slug, body)
-    body = build.add_abbr(retext(body))
+    return meta, build.add_abbr(retext(body))
+
+
+def write_page(page, prev_p, next_p, asm):
+    data = asm.pages[page.slug]
+    meta, body = page_body(page, asm)
     toc = "\n".join(f'    <li><a href="#{sid}"><span class="n">{html.escape(num)}</span>{html.escape(html.unescape(label))}</a></li>'
                     for _, sid, num, label, _ in data["pieces"])
     nav = []

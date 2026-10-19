@@ -25,6 +25,12 @@ Open `index.html` to start. The site is plain HTML, CSS and JavaScript with self
     python tools/build.py
     python tools/build_syllabus.py
 
+`tools/print_syllabus.py` prints this version as an A4 book: a cover, contents, an opener page for each chapter listing its syllabus items with page numbers, every page, and the abbreviations. It assembles the pages itself and has the same requirements as the complete-notes PDF below:
+
+    python tools/print_syllabus.py [output.pdf]
+
+Without an argument it writes `../PDF/CVR Physiotherapy - syllabus order (print).pdf`.
+
 ## Printable PDF
 
 `tools/print_pdf.py` joins every CVR page into one A4 book with a cover, contents, syllabus map, part dividers, page-numbered cross-references and an abbreviations list. It needs Google Chrome, poppler (`pdftotext`, `pdfunite`) and the Python package `websocket-client`:
