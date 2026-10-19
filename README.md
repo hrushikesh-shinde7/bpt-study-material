@@ -13,4 +13,13 @@ Open `index.html` to start. The site is plain HTML, CSS and JavaScript with self
 - `assets/notes.css`, `assets/notes.js`: shared styles and behaviour
 - `assets/fonts/`: Atkinson Hyperlegible and Literata (SIL Open Font License)
 
+## Printable PDF
+
+`tools/print_pdf.py` joins every CVR page into one A4 book with a cover, contents, syllabus map, part dividers, page-numbered cross-references and an abbreviations list. It needs Google Chrome, poppler (`pdftotext`, `pdfunite`) and the Python package `websocket-client`:
+
+    python tools/build.py
+    python tools/print_pdf.py [output.pdf]
+
+Without an argument it writes `../PDF/CVR Physiotherapy - complete notes (print).pdf`, outside this repository.
+
 Educational notes for exam preparation. Not medical advice. Each page lists its sources and the date its content was checked.
