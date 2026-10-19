@@ -22,4 +22,13 @@ Open `index.html` to start. The site is plain HTML, CSS and JavaScript with self
 
 Without an argument it writes `../PDF/CVR Physiotherapy - complete notes (print).pdf`, outside this repository.
 
+## Printable short notes
+
+`src/cvr/short/` holds one revision sheet per topic (same slugs as the full pages), plus a closing "Numbers to know" sheet. Each sheet starts with a small metadata comment giving its page budget. `tools/print_short.py` turns them into an A4 book with a cover, a how-to page, contents and abbreviations, and prints on every sheet the page of that topic in the full-notes PDF, so build the full notes first:
+
+    python tools/print_pdf.py
+    python tools/print_short.py [output.pdf]
+
+It reports any sheet that runs over its page budget. Without an argument it writes `../PDF/CVR Physiotherapy - short notes (print).pdf`.
+
 Educational notes for exam preparation. Not medical advice. Each page lists its sources and the date its content was checked.

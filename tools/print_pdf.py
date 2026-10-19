@@ -471,10 +471,10 @@ class Chrome:
                 self.loaded = True
         self.call("Runtime.evaluate", expression="document.fonts.ready.then(() => true)", awaitPromise=True)
 
-    def pdf(self, path, footer=True):
+    def pdf(self, path, footer=True, footer_text="Cardio-Vascular and Respiratory Physiotherapy, MUHS IV BPTh"):
         footer_html = ('<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7.5pt;color:#5b6773;'
                        'padding:0 14mm;display:flex;justify-content:space-between;">'
-                       '<span>Cardio-Vascular and Respiratory Physiotherapy, MUHS IV BPTh</span>'
+                       f'<span>{esc(footer_text)}</span>'
                        '<span class="pageNumber"></span></div>')
         res = self.call("Page.printToPDF", paperWidth=8.27, paperHeight=11.69,
                         marginTop=0.55, marginBottom=0.7 if footer else 0.55, marginLeft=0.55, marginRight=0.55,
