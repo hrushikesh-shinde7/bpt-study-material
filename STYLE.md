@@ -46,7 +46,7 @@ Use `data-toc="Short label"` on a section when its heading is too long for the c
 
 ## Technique cards
 
-Cards live in `src/cvr/cards/` and build to `cvr/cards/`. They cover skills, devices, tests and scales that short answers ask about (about 4 in 10 options). Use the same metadata keys; `crumb` is the card group (for example "ICU and ventilation") and `priority` starts with a short label such as `<span class="tier">High yield.</span>`. Sections are numbered in order but chosen to fit the technique, usually:
+Cards live in `src/cvr/cards/` and build to `cvr/cards/`. Besides technique cards, this collection also holds the other syllabus chapters (basics, rehabilitation, ICU conditions, basic life support) and the exam-skills pages; `CARD_GROUPS` in `tools/build.py` decides which home-page section each group appears in (technique cards, other syllabus chapters, exam skills). They cover skills, devices, tests and scales that short answers ask about (about 4 in 10 options). Use the same metadata keys; `crumb` is the card group (for example "ICU and ventilation") and `priority` starts with a short label such as `<span class="tier">High yield.</span>`. Sections are numbered in order but chosen to fit the technique, usually:
 
 What it is (definition) · How it works (physiological principle) · Indications · Contraindications and precautions · Procedure and dose · Comparison, advantages and disadvantages · Exam corner (past questions with session tags, answer skeleton, Test yourself)
 

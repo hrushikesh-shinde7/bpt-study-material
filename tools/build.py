@@ -46,12 +46,18 @@ TOPICS = [
 
 # Technique cards: short pages on skills, devices, tests and scales, grouped on the home page.
 CARD_GROUPS = [
-    ("icu", "ICU and ventilation", "Syllabus Ch 9, including the 9(e) conditions. Since 2023 an ICU question has appeared in every paper."),
-    ("airway", "Airway clearance", "Syllabus Ch 4(a–b)."),
-    ("breathing", "Breathing and breathlessness", "Syllabus Ch 4(c–k)."),
-    ("oxygen", "Oxygen, humidification and aerosols", "Syllabus Ch 4(e), 9(d)."),
-    ("exercise", "Exercise testing and exercise physiology", "Syllabus Ch 2(b), 3."),
-    ("assess", "Scales and investigations", "Syllabus Ch 2(a), 10."),
+    # key, title, note, home-page section
+    ("icu", "ICU and ventilation", "Syllabus Ch 9, including the 9(e) conditions. Since 2023 an ICU question has appeared in every paper.", "cards"),
+    ("airway", "Airway clearance", "Syllabus Ch 4(a–b).", "cards"),
+    ("breathing", "Breathing and breathlessness", "Syllabus Ch 4(c–k).", "cards"),
+    ("oxygen", "Oxygen, humidification and aerosols", "Syllabus Ch 4(e), 9(d).", "cards"),
+    ("therapy", "Electrotherapy, therapeutic exercise and yoga", "Syllabus Ch 4(h), 4(i), 4(l).", "cards"),
+    ("exercise", "Exercise testing and exercise physiology", "Syllabus Ch 2(b), 3.", "cards"),
+    ("assess", "Investigations and scales", "Syllabus Ch 2(a), 10.", "cards"),
+    ("rehab", "Cardiac and pulmonary rehabilitation", "Syllabus Ch 7 and 8.", "chapters"),
+    ("basics", "Basics: anatomy, physiology and drugs", "Syllabus Ch 1 (revision, applied to physiotherapy).", "chapters"),
+    ("emergency", "Basic life support", "Syllabus Ch 11.", "chapters"),
+    ("exam", "Exam skills", "Answer writing with ICF and goals (syllabus Ch 5), and the practical exam.", "exam"),
 ]
 CARDS = [
     # slug, group, title, meta line on the home page
@@ -72,11 +78,22 @@ CARDS = [
     ("dyspnoea", "breathing", "Dyspnoea, relieving positions, energy conservation and pacing", "In 8 papers."),
     ("oxygen-therapy", "oxygen", "Oxygen therapy: devices, targets and hazards", "In 4 papers."),
     ("aerosol-humidification", "oxygen", "Humidification, nebulisers and inhalers", "In 7 papers."),
+    ("electrotherapy-exercise", "therapy", "Electrotherapy and therapeutic exercise in heart, lung and vascular conditions", "Wound modalities in 4 papers."),
+    ("yoga", "therapy", "Applied yoga in cardio-respiratory conditions", "Syllabus 4(l). Not asked on its own in 2016–2026."),
     ("exercise-testing", "exercise", "Exercise testing: contraindications, stop criteria, Bruce, cycle, walk and step tests", "In 9 papers."),
     ("exercise-physiology", "exercise", "Exercise physiology and prescription: METs, energy systems, intensity, training", "In 6 papers."),
+    ("investigations", "assess", "Investigations: chest X-ray, PFT, ECG and bedside tests", "3-mark questions in most papers; four of the five practical spots."),
     ("scales", "assess", "Scales: Borg, mMRC, NYHA, CCS and quality-of-life questionnaires", "In 5 papers."),
     ("abg", "assess", "ABG interpretation and why patients desaturate", "In 3 papers."),
     ("breathing-patterns", "assess", "Abnormal breathing patterns and chest signs", "In 2 papers."),
+    ("cardiac-rehab", "rehab", "Cardiac rehabilitation: definition, indications, contraindications, phases, outcome measures", "Part of the most-asked long answer; 7-mark questions in 5 papers."),
+    ("pulmonary-rehab", "rehab", "Pulmonary rehabilitation: definition, indications, contraindications, components, outcome measures", "Long-term part of every chronic lung disease case."),
+    ("respiratory-basics", "basics", "Respiratory anatomy, physiology and mechanics of the thorax", "Revision; spirogram and oxygen curve to draw."),
+    ("cardiac-basics", "basics", "Cardiac anatomy and physiology for physiotherapists", "Revision; coronary territories and the conduction system."),
+    ("drugs", "basics", "Cardiac and respiratory drugs: what physiotherapists need to know", "How each drug changes assessment and exercise."),
+    ("bls", "emergency", "Basic life support (CPR) for physiotherapists", "Skill and viva; 2025 CPR updates."),
+    ("answer-writing", "exam", "Answer writing: the paper, ICF, goals and documentation", "How to write 3-, 7- and 15-mark answers."),
+    ("practical-exam", "exam", "Practical exam pack: long case, short case, spots and journal", "Follows the official 80-mark scheme."),
 ]
 
 COLLECTIONS = {
@@ -300,12 +317,12 @@ def build_index(ready, ready_cards):
         tiers[tier].append(row(f"cvr/ch6/{slug}.html", slug in ready, title, note))
     done = len(ready)
     total = len(TOPICS)
-    card_html = []
-    for key, gtitle, gnote in CARD_GROUPS:
+    group_html = {"cards": [], "chapters": [], "exam": []}
+    for key, gtitle, gnote, section in CARD_GROUPS:
         rows = [row(f"cvr/cards/{slug}.html", slug in ready_cards, title, note)
                 for slug, grp, title, note in CARDS if grp == key]
-        card_html.append(f'      <h3>{html.escape(gtitle)}</h3>\n      <p class="meta-line">{html.escape(gnote)}</p>\n'
-                         f'      <ul class="chapter-list">\n' + "\n".join(rows) + "\n      </ul>")
+        group_html[section].append(f'      <h3>{html.escape(gtitle)}</h3>\n      <p class="meta-line">{html.escape(gnote)}</p>\n'
+                                   f'      <ul class="chapter-list">\n' + "\n".join(rows) + "\n      </ul>")
     cards_done = len(ready_cards)
 
     out = HEAD.format(title="CVR Physiotherapy notes",
@@ -322,7 +339,7 @@ def build_index(ready, ready_cards):
     <div class="wrap">
       <p class="crumbs">MUHS IV BPTh</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy</h1>
-      <p class="lede">Chapter 6, Physiotherapy Management, with topics in the order they score in the real papers, plus technique cards for the skills, devices, tests and scales that the short answers ask about. {done} of {total} topics and {cards_done} of {len(CARDS)} cards ready. <a href="#cards">Jump to the technique cards</a>.</p>
+      <p class="lede">The whole CVR syllabus: Chapter 6 conditions in the order they score in the real papers, technique cards for the skills, devices, tests and scales the short answers ask about, the other syllabus chapters, and exam skills. {done} of {total} topics and {cards_done} of {len(CARDS)} cards ready. Jump to the <a href="#cards">technique cards</a>, <a href="#chapters">other chapters</a> or <a href="#exam">exam skills</a>.</p>
     </div>
   </div>
 
@@ -370,8 +387,19 @@ def build_index(ready, ready_cards):
 
     <section class="sec" id="cards">
       <h2><span class="n">4</span>Technique cards</h2>
-      <p>About 4 in 10 short-answer options test a technique, device, test or scale rather than a condition. Each card gives the principle, indications, contraindications, the procedure with doses, and the past questions. {cards_done} of {len(CARDS)} cards ready.</p>
-{chr(10).join(card_html)}
+      <p>About 4 in 10 short-answer options test a technique, device, test or scale rather than a condition. Each card gives the principle, indications, contraindications, the procedure with doses, and the past questions.</p>
+{chr(10).join(group_html["cards"])}
+    </section>
+
+    <section class="sec" id="chapters">
+      <h2><span class="n">5</span>Other syllabus chapters</h2>
+      <p>Rehabilitation programmes, the revision chapter and basic life support, so that every chapter of the syllabus is covered.</p>
+{chr(10).join(group_html["chapters"])}
+    </section>
+
+    <section class="sec" id="exam">
+      <h2><span class="n">6</span>Exam skills</h2>
+{chr(10).join(group_html["exam"])}
     </section>
 
     <div class="pagefoot">
