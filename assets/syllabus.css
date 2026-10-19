@@ -1,0 +1,40 @@
+/* Syllabus-order version (cvr-syllabus/): additions to notes.css. Colours come from its tokens, so dark mode follows. */
+
+/* syllabus code in front of each page title */
+.h1code {
+  display: inline-block; margin-right: 0.45em; padding: 0.05em 0.45em;
+  font-family: var(--font-body); font-size: 0.62em; font-weight: 700; vertical-align: 0.18em;
+  color: var(--paper); background: var(--normal-fill); border-radius: var(--radius-s);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* sections labelled with a syllabus code (i, ii, 3(a) ...) instead of a running number */
+.sec > h2 .n--code { background: var(--normal-fill); }
+.toc a .n--code { color: var(--normal); }
+
+/* contents page */
+.syl-jump { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.1rem; }
+.syl-jump a {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2.6rem; min-height: 2.6rem; padding: 0 0.6rem;
+  border: 1px solid var(--rule); border-radius: var(--radius-m);
+  background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none;
+}
+.syl-jump a:hover { background: var(--panel); }
+.syl-jump a:focus-visible { outline: 3px solid var(--normal-fill); outline-offset: 2px; }
+
+.syl-items, .syl-sub { list-style: none; padding: 0; margin: 0.75rem 0 0; }
+.syl-items > li {
+  display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.5rem;
+  border-top: 1px solid var(--rule); padding: 0.85rem 0; margin: 0;
+}
+.syl-sub { margin-top: 0.35rem; }
+.syl-sub > li { display: grid; grid-template-columns: 2.4rem 1fr; gap: 0.5rem; padding: 0.45rem 0; margin: 0; }
+.syl-code { font-weight: 700; color: var(--normal); font-variant-numeric: tabular-nums; }
+.syl-ttl { font-weight: 700; }
+.syl-items a { font-weight: 700; }
+.syl-sub a { font-weight: 650; }
+.syl-items .meta { display: block; font-size: 0.88rem; color: var(--ink-2); margin-top: 0.15rem; }
+
+/* long guideline names (ACC/AHA/AACVPR/...) must wrap on a phone */
+.sources li { overflow-wrap: anywhere; }

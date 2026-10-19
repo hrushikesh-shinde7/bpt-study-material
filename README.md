@@ -9,10 +9,21 @@ Open `index.html` to start. The site is plain HTML, CSS and JavaScript with self
 - `index.html`: the home page listing every page
 - `cvr/ch6/`: one page per condition
 - `cvr/cards/`: technique cards, other syllabus chapters and exam-skills pages
+- `cvr-syllabus/`: the same notes in the order of the MUHS syllabus (see below)
 - `src/`: page sources; `tools/build.py` builds the pages from them
 - `src/cvr/short/`, `src/cvr/answers/`: sources for the printable short notes and model answers (not built into the site)
+- `src/cvr-syllabus/`: hand-written parts of the syllabus-order version
 - `assets/notes.css`, `assets/notes.js`: shared styles and behaviour
 - `assets/fonts/`: Atkinson Hyperlegible and Literata (SIL Open Font License)
+
+## Syllabus-order version
+
+`cvr-syllabus/index.html` lists the CVR syllabus in its own order: Chapters 1 to 11 with every lettered and numbered item, then the practical list and exam skills. Each item links to its notes, so a student can follow the order in which the college teaches.
+
+`tools/build_syllabus.py` builds these pages from the topic sources in `src/cvr/`, section by section, so a fix there reaches both versions. The page list and syllabus wording are at the top of the script. Where one topic page covers syllabus items that the syllabus lists apart (valve disease and heart failure; the pleural disorders), the split parts are hand-written in `src/cvr-syllabus/`, and each file names the topic page it came from. These parts must be corrected in both places. The script rewrites links and section numbers for their new pages, and lists any link, anchor or topic section left unplaced:
+
+    python tools/build.py
+    python tools/build_syllabus.py
 
 ## Printable PDF
 
