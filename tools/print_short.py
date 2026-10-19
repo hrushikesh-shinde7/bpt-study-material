@@ -202,7 +202,7 @@ def full_notes_pages():
     if not pdf.exists():
         print("note: full-notes PDF not found, so sheets will not show its page numbers")
         return {}
-    sources = [p for p in (build.SRC / "cvr").rglob("*.html") if "short" not in p.parts]
+    sources = [p for d in ("ch6", "cards") for p in (build.SRC / "cvr" / d).glob("*.html")]
     if pdf.stat().st_mtime < max(p.stat().st_mtime for p in sources):
         print("warning: the full-notes PDF is older than the page sources; rebuild it first so page numbers match")
     doc = pp.Doc()
