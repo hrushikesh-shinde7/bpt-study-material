@@ -46,7 +46,7 @@ TOPICS = [
 
 # Technique cards: short pages on skills, devices, tests and scales, grouped on the home page.
 CARD_GROUPS = [
-    ("icu", "ICU and ventilation", "Syllabus Ch 9. Since 2023 an ICU question has appeared in every paper."),
+    ("icu", "ICU and ventilation", "Syllabus Ch 9, including the 9(e) conditions. Since 2023 an ICU question has appeared in every paper."),
     ("airway", "Airway clearance", "Syllabus Ch 4(a–b)."),
     ("breathing", "Breathing and breathlessness", "Syllabus Ch 4(c–k)."),
     ("oxygen", "Oxygen, humidification and aerosols", "Syllabus Ch 4(e), 9(d)."),
@@ -60,6 +60,8 @@ CARDS = [
     ("suctioning", "icu", "Suctioning and manual hyperinflation", "In 7 papers; hazards of suctioning is a favourite 3-mark question."),
     ("positioning", "icu", "Therapeutic positioning, V/Q and the zones of the lung", "In 6 papers."),
     ("bed-rest", "icu", "Effects of bed rest and early mobilisation", "In 5 papers."),
+    ("icu-neurological", "icu", "ICU conditions: head injury, tetanus, spinal cord injury and neuromuscular disease", "Syllabus 9(e). Not asked on their own in 2016–2026."),
+    ("icu-medical", "icu", "ICU conditions: pulmonary oedema, shock, organ failure, poisoning, aspiration and drowning", "Syllabus 9(e). Not asked on their own in 2016–2026."),
     ("airway-clearance", "airway", "Airway clearance techniques: overview and choice", "Asked as a 7-mark overview in 4 papers."),
     ("acbt", "airway", "ACBT, forced expiration, huffing and autogenic drainage", "In 10 papers, the most-asked technique."),
     ("postural-drainage", "airway", "Postural drainage, percussion and vibration", "In 2 papers, and part of every airway-clearance answer."),
