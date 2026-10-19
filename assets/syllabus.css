@@ -38,3 +38,7 @@
 
 /* long guideline names (ACC/AHA/AACVPR/...) must wrap on a phone */
 .sources li { overflow-wrap: anywhere; }
+
+/* Neuro figures: affected limbs and parts drawn in the problem colour */
+.d-line--problem { stroke: var(--problem-fill); stroke-width: 2; fill: none; stroke-linecap: round; }
+.fig.is-sketch .d-line--problem { stroke: var(--ink); }
