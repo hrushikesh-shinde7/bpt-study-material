@@ -67,7 +67,7 @@ PAGES = [
     ("tp2-balance-coordination", "TP2", "Balance and coordination training", "TP", "Balance strategies and training in 4 papers."),
     ("tp3-equipment", "TP3", "Tools and adaptive equipment for neuro-rehabilitation", "TP", "Balls, tilt boards, bolsters, wedges, benches and mats."),
     ("tp4-transfers-gait", "TP4", "Transfers, functional re-education, posture and gait training", "TP", "Gait training appears inside most stroke and Parkinson's answers."),
-    ("tp5-bladder-bowel", "TP5", "Bladder and bowel training", "TP", "Types of neurogenic bladder in 10 papers."),
+    ("tp5-bladder-bowel", "TP5", "Bladder and bowel training", "TP", "Types of neurogenic bladder in 9 papers."),
     ("tp6-caring", "TP6", "A philosophy of caring", "TP", "Patient- and family-centred care."),
     ("tp7-orthoses", "TP7", "Orthoses and splints", "TP", "AFO, cock-up splints and CP foot orthoses; a practical spot."),
     ("tp8-wheelchairs", "TP8", "Lifting, wheelchairs and adaptive devices", "TP", "Wheelchair prescription in DMD (S26)."),
