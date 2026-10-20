@@ -341,6 +341,7 @@ def build_index(ready, ready_cards):
       <p class="crumbs">MUHS IV BPTh</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy</h1>
       <p class="lede">The whole CVR syllabus: Chapter 6 conditions in the order they score in the real papers, technique cards for the skills, devices, tests and scales the short answers ask about, the other syllabus chapters, and exam skills. {done} of {total} topics and {cards_done} of {len(CARDS)} cards ready. Jump to the <a href="#cards">technique cards</a>, <a href="#chapters">other chapters</a> or <a href="#exam">exam skills</a>.</p>
+      <p class="lede">Also on this site: the <a href="neuro/index.html">Neuro Physiotherapy notes</a>, in syllabus order, and these <a href="cvr-syllabus/index.html">CVR notes in syllabus order</a>.</p>
     </div>
   </div>
 
