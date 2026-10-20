@@ -444,6 +444,7 @@ class Chrome:
             except Exception:
                 time.sleep(0.2)
         else:
+            self.proc.terminate()
             raise RuntimeError("Chrome did not start")
         self.ws = websocket.create_connection(page["webSocketDebuggerUrl"], timeout=900, suppress_origin=True)
         self.next_id = 0
