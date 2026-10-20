@@ -1176,15 +1176,15 @@ def write_page(page, prev_p, next_p, asm):
     <div class="wrap">
       <p class="crumbs">{" › ".join(crumbs)}</p>
       <h1><span class="h1code">{page.code}</span>{html.escape(page.h1)}</h1>
-      <p class="lede">{meta['lede']}</p>
+      <p class="lede">{build.add_abbr(meta['lede'])}</p>
 
       <div class="casesheet">
         <dl>
-          <div class="row"><dt>Syllabus</dt><dd>{meta['syllabus']}</dd></div>
+          <div class="row"><dt>Syllabus</dt><dd>{build.add_abbr(meta['syllabus'])}</dd></div>
           <div class="row"><dt>Priority</dt><dd>{meta['priority']}</dd></div>
           <div class="row"><dt>Asked as</dt><dd>{meta['asked']}</dd></div>
           <div class="row"><dt>Usual split</dt><dd>{meta['split']}</dd></div>
-          <div class="row"><dt>Checked against</dt><dd>{meta['checked']}</dd></div>
+          <div class="row"><dt>Checked against</dt><dd>{build.add_abbr(meta['checked'])}</dd></div>
           <div class="row"><dt>Content checked</dt><dd>{meta['date']}. Next review due {meta['review']}.</dd></div>
           <div class="row"><dt>My revision</dt><dd>
             <div class="tracker">

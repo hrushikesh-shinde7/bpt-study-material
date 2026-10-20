@@ -95,7 +95,59 @@ COMMUNITY_ABBR = {
     "TUG": "Timed Up and Go test", "BBS": "Berg Balance Scale", "MMSE": "Mini-Mental State Examination",
     "BK": "Below-knee", "AK": "Above-knee", "PTB": "Patellar tendon bearing", "SACH": "Solid ankle cushion heel",
     "MSW": "Medical social worker", "OT": "Occupational therapy", "RTA": "Road traffic accident",
-    "PPE": "Personal protective equipment", "NDMA": "National Disaster Management Authority",
+    "PPE": "Personal protective equipment", "NDMA": "National Disaster Management Authority", "ICS": "International Continence Society",
+    "ESI": "Employees' State Insurance", "NIOSH": "National Institute for Occupational Safety and Health (USA)",
+    "DDRC": "District Disability Rehabilitation Centre", "FES-I": "Falls Efficacy Scale–International",
+    "ICDS": "Integrated Child Development Services",
+    "ICIQ": "International Consultation on Incontinence Questionnaire",
+    "ICIQ-UI": "ICIQ urinary incontinence short form", "NCD": "Non-communicable disease", "CP": "Cerebral palsy",
+    "CVR": "Cardio-vascular and respiratory physiotherapy (the CVR paper)",
+    "DEIC": "District Early Intervention Centre", "IADL": "Instrumental activities of daily living",
+    "ILO": "International Labour Organization", "MTP": "Medical Termination of Pregnancy (Act)",
+    "NPHCE": "National Programme for Health Care of the Elderly",
+    "NPPCD": "National Programme for Prevention and Control of Deafness",
+    "PCPNDT": "Pre-Conception and Pre-Natal Diagnostic Techniques (Act)",
+    "PERFECT": "Power, endurance, repetitions, fast contractions, every contraction timed (pelvic floor grading)",
+    "PFMT": "Pelvic floor muscle training", "PM-JAY": "Pradhan Mantri Jan Arogya Yojana",
+    "RBSK": "Rashtriya Bal Swasthya Karyakram", "SHG": "Self-help group",
+    "START": "Simple Triage and Rapid Treatment",
+    "UNESCO": "United Nations Educational, Scientific and Cultural Organization", "UTI": "Urinary tract infection",
+    "YMCA": "Young Men's Christian Association", "AAM": "Ayushman Arogya Mandir", "AB": "Ayushman Bharat",
+    "ABM": "Academy of Breastfeeding Medicine", "AC": "Air-conditioned",
+    "AIIMS": "All India Institute of Medical Sciences", "ANOVA": "Analysis of variance",
+    "ASIA": "American Spinal Injury Association", "CARF": "Commission on Accreditation of Rehabilitation Facilities",
+    "CBM": "CBM Global (an international disability charity)", "CRPS": "Complex regional pain syndrome",
+    "CSEP": "Canadian Society for Exercise Physiology", "CSR": "Corporate social responsibility",
+    "CTRI": "Clinical Trials Registry–India", "DDMA": "District Disaster Management Authority",
+    "DWD": "Department of Workforce Development (Wisconsin, USA)", "ECT": "Every contraction timed",
+    "ENT": "Ear, nose and throat", "EPDS": "Edinburgh Postnatal Depression Scale",
+    "FEMA": "Federal Emergency Management Agency (USA)",
+    "FINER": "Feasible, interesting, novel, ethical, relevant (a good research question)",
+    "FRAX": "Fracture Risk Assessment Tool", "FSH": "Follicle-stimulating hormone", "LH": "Luteinising hormone",
+    "GDS": "Geriatric Depression Scale", "IAP": "Indian Academy of Pediatrics",
+    "ICIDH": "International Classification of Impairments, Disabilities and Handicaps (WHO, 1980)",
+    "ICT": "Information and communication technology", "IT": "Information technology",
+    "IEA": "International Ergonomics Association", "IGF-1": "Insulin-like growth factor 1",
+    "IGNOAPS": "Indira Gandhi National Old Age Pension Scheme",
+    "IIPS": "International Institute for Population Sciences", "IQ": "Intelligence quotient",
+    "JSSK": "Janani Shishu Suraksha Karyakram", "LPG": "Liquefied petroleum gas (cooking gas)",
+    "MACT": "Motor Accident Claims Tribunal", "MNA": "Mini Nutritional Assessment", "NDI": "Neck Disability Index",
+    "NFHS-4": "National Family Health Survey, fourth round (2015–16)",
+    "NIDDCP": "National Iodine Deficiency Disorders Control Programme",
+    "NLEP": "National Leprosy Eradication Programme",
+    "NPCBVI": "National Programme for Control of Blindness and Visual Impairment",
+    "OCRA": "Occupational Repetitive Actions index", "OSHA": "Occupational Safety and Health Administration (USA)",
+    "OWAS": "Ovako Working Posture Analysis System", "PC": "Phosphocreatine (creatine phosphate)",
+    "PICO": "Population, intervention, comparison, outcome", "PMMVY": "Pradhan Mantri Matru Vandana Yojana",
+    "PMSMA": "Pradhan Mantri Surakshit Matritva Abhiyan",
+    "POMA": "Performance-Oriented Mobility Assessment (Tinetti)", "POP-Q": "Pelvic Organ Prolapse Quantification",
+    "POSH": "Prevention of Sexual Harassment of women at the workplace (Act, 2013)",
+    "PTSD": "Post-traumatic stress disorder", "PWDVA": "Protection of Women from Domestic Violence Act",
+    "QEC": "Quick Exposure Check", "RA": "Rheumatoid arthritis", "RV": "Residual volume", "SCI": "Spinal cord injury",
+    "SDMA": "State Disaster Management Authority", "SIJ": "Sacroiliac joint",
+    "SPPB": "Short Physical Performance Battery", "UHC": "Urban health centre",
+    "UIP": "Universal Immunisation Programme", "UNFPA": "United Nations Population Fund", "UV": "Ultraviolet",
+    "VHSND": "Village Health, Sanitation and Nutrition Day",
 }
 
 TOC_RE = re.compile(r'<section class="sec[^"]*" id="([^"]+)"(?: data-toc="([^"]*)")?>\s*<h2><span class="n[^"]*">([^<]*)</span>(.*?)</h2>', re.S)
@@ -165,15 +217,15 @@ def write_page(page, prev_p, next_p, ready):
     <div class="wrap">
       <p class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">{SITE_NAME}</a> › {PART_CRUMB[part]} › {meta['crumb']}</p>
       <h1><span class="h1code">{code}</span>{meta['h1']}</h1>
-      <p class="lede">{meta['lede']}</p>
+      <p class="lede">{build.add_abbr(meta['lede'])}</p>
 
       <div class="casesheet">
         <dl>
-          <div class="row"><dt>Syllabus</dt><dd>{meta['syllabus']}</dd></div>
+          <div class="row"><dt>Syllabus</dt><dd>{build.add_abbr(meta['syllabus'])}</dd></div>
           <div class="row"><dt>Priority</dt><dd>{meta['priority']}</dd></div>
           <div class="row"><dt>Asked as</dt><dd>{meta['asked']}</dd></div>
           <div class="row"><dt>Usual split</dt><dd>{meta['split']}</dd></div>
-          <div class="row"><dt>Checked against</dt><dd>{meta['checked']}</dd></div>
+          <div class="row"><dt>Checked against</dt><dd>{build.add_abbr(meta['checked'])}</dd></div>
           <div class="row"><dt>Content checked</dt><dd>{meta['date']}. Next review due {meta['review']}.</dd></div>
           <div class="row"><dt>My revision</dt><dd>
             <div class="tracker">

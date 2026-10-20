@@ -148,20 +148,73 @@ ABBR = {
     "PNF": "Proprioceptive neuromuscular facilitation", "RMT": "Respiratory muscle training",
     "HFCWO": "High-frequency chest wall oscillation", "VO₂max": "Maximal oxygen uptake",
     "ICU-AW": "ICU-acquired weakness",
+    "WHO": "World Health Organization", "NICE": "National Institute for Health and Care Excellence (UK)",
+    "AHA": "American Heart Association", "ACC": "American College of Cardiology",
+    "ACSM": "American College of Sports Medicine", "BTS": "British Thoracic Society",
+    "ATS": "American Thoracic Society", "ERS": "European Respiratory Society",
+    "ESC": "European Society of Cardiology", "ACPRC": "Association of Chartered Physiotherapists in Respiratory Care",
+    "AARC": "American Association for Respiratory Care",
+    "AACVPR": "American Association of Cardiovascular and Pulmonary Rehabilitation",
+    "ACCP": "American College of Chest Physicians", "ADA": "American Diabetes Association",
+    "ISH": "International Society of Hypertension", "SIGN": "Scottish Intercollegiate Guidelines Network",
+    "GOLD": "Global Initiative for Chronic Obstructive Lung Disease", "GINA": "Global Initiative for Asthma",
+    "ILCOR": "International Liaison Committee on Resuscitation", "ECC": "Emergency cardiovascular care",
+    "ISBI": "International Society for Burn Injuries", "IWGDF": "International Working Group on the Diabetic Foot",
+    "ESVS": "European Society for Vascular Surgery", "SVS": "Society for Vascular Surgery",
+    "JRS": "Japanese Respiratory Society", "ALAT": "Latin American Thoracic Association",
+    "EORTC": "European Organisation for Research and Treatment of Cancer",
+    "SOSORT": "International Society on Scoliosis Orthopaedic and Rehabilitation Treatment",
+    "BACPAR": "British Association of Chartered Physiotherapists in Amputee Rehabilitation",
+    "AYUSH": "Ayurveda, Yoga and Naturopathy, Unani, Siddha and Homoeopathy (Indian ministry)",
+    "NHS": "National Health Service (UK)", "APTA": "American Physical Therapy Association",
+    "ICMR": "Indian Council of Medical Research", "UK": "United Kingdom", "EU": "European Union",
+    "UN": "United Nations", "HIV": "Human immunodeficiency virus", "DNA": "Deoxyribonucleic acid",
+    "MRC": "Medical Research Council", "ACE": "Angiotensin-converting enzyme", "ARB": "Angiotensin receptor blocker",
+    "ARNI": "Angiotensin receptor–neprilysin inhibitor", "SGLT2": "Sodium–glucose co-transporter 2",
+    "DPP-4": "Dipeptidyl peptidase 4", "GLP-1": "Glucagon-like peptide 1",
+    "HDL": "High-density lipoprotein (good cholesterol)", "LDL": "Low-density lipoprotein",
+    "LDH": "Lactate dehydrogenase", "BNP": "Brain natriuretic peptide", "CK": "Creatine kinase",
+    "CK-MB": "Creatine kinase, heart muscle (MB) form", "INR": "International normalised ratio (warfarin control)",
+    "ATP": "Adenosine triphosphate", "SA": "Sinoatrial", "AV": "Atrioventricular", "AF": "Atrial fibrillation",
+    "STEMI": "ST-elevation myocardial infarction", "QRS": "QRS complex (ventricular depolarisation on the ECG)",
+    "RVH": "Right ventricular hypertrophy", "AED": "Automated external defibrillator",
+    "CPR": "Cardiopulmonary resuscitation", "BLS": "Basic life support",
+    "ECMO": "Extracorporeal membrane oxygenation", "CPET": "Cardiopulmonary exercise test",
+    "DLCO": "Diffusing capacity of the lung for carbon monoxide", "TLC": "Total lung capacity",
+    "PEF": "Peak expiratory flow", "VC": "Vital capacity", "RDS": "Respiratory distress syndrome",
+    "SMI": "Sustained maximal inspiration", "ICS": "Inhaled corticosteroid", "LABA": "Long-acting β2-agonist",
+    "LAMA": "Long-acting muscarinic antagonist", "SOS": "When needed (si opus sit)",
+    "MDR-TB": "Multidrug-resistant tuberculosis",
+    "CBNAAT": "Cartridge-based nucleic acid amplification test (for TB)", "CMV": "Controlled mandatory ventilation",
+    "SOFA": "Sequential Organ Failure Assessment score", "VATS": "Video-assisted thoracoscopic surgery",
+    "IMA": "Internal mammary artery", "IP": "Interphalangeal", "NSAID": "Non-steroidal anti-inflammatory drug",
+    "NMES": "Neuromuscular electrical stimulation", "MONA": "Morphine, oxygen, nitrates, aspirin",
+    "CEAP": "Clinical, aetiological, anatomical, pathophysiological classification (venous disease)",
+    "CIVIQ": "Chronic Venous Insufficiency Quality of Life Questionnaire",
+    "SIGAM": "Special Interest Group in Amputee Medicine (mobility grades)",
+    "SEAS": "Scientific Exercise Approach to Scoliosis", "BRCA": "Breast cancer genes 1 and 2",
+    "HADS": "Hospital Anxiety and Depression Scale", "PHQ-9": "Patient Health Questionnaire (9 items)",
+    "SF-36": "Short Form 36 health survey", "EQ-5D": "EuroQol five-dimension questionnaire",
+    "WHOQOL-BREF": "WHO Quality of Life questionnaire, short version",
+    "PAQLQ": "Paediatric Asthma Quality of Life Questionnaire", "CR10": "Borg category–ratio 0–10 scale",
+    "SOAP": "Subjective, objective, assessment, plan",
+    "SMART": "Specific, measurable, achievable, relevant, time-bound", "FITT": "Frequency, intensity, time and type",
+    "GCS": "Glasgow Coma Scale", "CSF": "Cerebrospinal fluid", "MRI": "Magnetic resonance imaging",
+    "CT": "Computed tomography", "BK": "Below-knee", "EMG": "Electromyography",
 }
 
 
 def add_abbr(body):
-    """Wrap the first plain-text use of each known abbreviation in <abbr>."""
+    """Wrap the first plain-text use of each known abbreviation in <abbr> (not in the sources list, where capitals are author initials)."""
     done = set(re.findall(r"<abbr[^>]*>([^<]+)</abbr>", body))
-    parts = re.split(r"(<svg.*?</svg>|<abbr.*?</abbr>|<summary.*?</summary>|<h2.*?</h2>|<[^>]+>)", body, flags=re.S)
+    parts = re.split(r"(<section class=\"sec sources\".*?</section>|<svg.*?</svg>|<abbr.*?</abbr>|<summary.*?</summary>|<h2.*?</h2>|<[^>]+>)", body, flags=re.S)
     for i in range(0, len(parts), 2):
         text = parts[i]
         hits = []
         for ab, full in ABBR.items():
             if ab in done:
                 continue
-            m = re.search(r"(?<![\w-])" + re.escape(ab) + r"(?![\w-])", text)
+            m = re.search(r"(?<![\w-])" + re.escape(ab) + r"(?=s?(?![\w-]))", text)   # also the plural (PHCs)
             if m and not any(m.start() < e and s < m.end() for s, e, _, _ in hits):
                 hits.append((m.start(), m.end(), ab, full))
         for s, e, ab, full in sorted(hits, reverse=True):
@@ -267,15 +320,15 @@ def build_page(kind, slug, ready_slugs):
     <div class="wrap">
       <p class="crumbs"><a href="{up}index.html">Home</a> › <a href="{up}cvr/index.html">CVR Physiotherapy</a> › {coll['crumb']} › {meta['crumb']}</p>
       <h1>{meta['h1']}</h1>
-      <p class="lede">{meta['lede']}</p>
+      <p class="lede">{add_abbr(meta['lede'])}</p>
 
       <div class="casesheet">
         <dl>
-          <div class="row"><dt>Syllabus</dt><dd>{meta['syllabus']}</dd></div>
+          <div class="row"><dt>Syllabus</dt><dd>{add_abbr(meta['syllabus'])}</dd></div>
           <div class="row"><dt>Priority</dt><dd>{meta['priority']}</dd></div>
           <div class="row"><dt>Asked as</dt><dd>{meta['asked']}</dd></div>
           <div class="row"><dt>Usual split</dt><dd>{meta['split']}</dd></div>
-          <div class="row"><dt>Checked against</dt><dd>{meta['checked']}</dd></div>
+          <div class="row"><dt>Checked against</dt><dd>{add_abbr(meta['checked'])}</dd></div>
           <div class="row"><dt>Content checked</dt><dd>{meta['date']}. Next review due {meta['review']}.</dd></div>
           <div class="row"><dt>My revision</dt><dd>
             <div class="tracker">

@@ -112,6 +112,29 @@ NEURO_ABBR = {
     "NMES": "Neuromuscular electrical stimulation", "FES": "Functional electrical stimulation",
     "IVIG": "Intravenous immunoglobulin", "TIA": "Transient ischaemic attack", "AF": "Atrial fibrillation",
     "CT": "Computed tomography", "MRI": "Magnetic resonance imaging", "10MWT": "10-metre walk test",
+    "ASIA": "American Spinal Injury Association", "CMT": "Charcot–Marie–Tooth disease",
+    "HSMN": "Hereditary sensory and motor neuropathy", "ASA": "American Stroke Association",
+    "EEG": "Electroencephalography", "HKAFO": "Hip–knee–ankle–foot orthosis",
+    "ISNCSCI": "International Standards for Neurological Classification of Spinal Cord Injury",
+    "STREAM": "Stroke Rehabilitation Assessment of Movement",
+    "ADIP": "Assistance to Disabled Persons for purchase of aids and appliances (scheme)",
+    "ALIMCO": "Artificial Limbs Manufacturing Corporation of India",
+    "CDC": "Centers for Disease Control and Prevention (USA)", "CFCS": "Communication Function Classification System",
+    "CIDP": "Chronic inflammatory demyelinating polyneuropathy", "CNS": "Central nervous system",
+    "COMT": "Catechol-O-methyltransferase", "CPP": "Cerebral perfusion pressure",
+    "CRPS": "Complex regional pain syndrome", "CVA": "Cerebrovascular accident (stroke)",
+    "DASH": "Disabilities of the Arm, Shoulder and Hand questionnaire", "EAN": "European Academy of Neurology",
+    "EAU": "European Association of Urology", "EFNS": "European Federation of Neurological Societies",
+    "ESR": "Erythrocyte sedimentation rate", "GMCH": "Government Medical College and Hospital",
+    "HINTS": "Head impulse, nystagmus, test of skew (bedside stroke check in acute vertigo)",
+    "ICMR-INDIAB": "ICMR–India Diabetes study", "IQ": "Intelligence quotient", "JE": "Japanese encephalitis",
+    "LSVT": "Lee Silverman Voice Treatment", "MAO-B": "Monoamine oxidase B",
+    "MDS": "International Parkinson and Movement Disorder Society",
+    "MDS-UPDRS": "Movement Disorder Society Unified Parkinson's Disease Rating Scale",
+    "MEP": "Maximal expiratory pressure", "MGFA": "Myasthenia Gravis Foundation of America",
+    "NGO": "Non-governmental organisation", "NICU": "Neonatal intensive care unit", "OPD": "Outpatient department",
+    "PDQ-39": "Parkinson's Disease Questionnaire (39 items)", "PMA": "Progressive muscular atrophy",
+    "PNS": "Peripheral Nerve Society", "RTA": "Road traffic accident", "VP": "Ventriculoperitoneal (shunt)",
 }
 
 TOC_RE = re.compile(r'<section class="sec[^"]*" id="([^"]+)"(?: data-toc="([^"]*)")?>\s*<h2><span class="n[^"]*">([^<]*)</span>(.*?)</h2>', re.S)
@@ -181,15 +204,15 @@ def write_page(page, prev_p, next_p, ready):
     <div class="wrap">
       <p class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">{SITE_NAME}</a> › {PART_CRUMB[part]} › {meta['crumb']}</p>
       <h1><span class="h1code">{code}</span>{meta['h1']}</h1>
-      <p class="lede">{meta['lede']}</p>
+      <p class="lede">{build.add_abbr(meta['lede'])}</p>
 
       <div class="casesheet">
         <dl>
-          <div class="row"><dt>Syllabus</dt><dd>{meta['syllabus']}</dd></div>
+          <div class="row"><dt>Syllabus</dt><dd>{build.add_abbr(meta['syllabus'])}</dd></div>
           <div class="row"><dt>Priority</dt><dd>{meta['priority']}</dd></div>
           <div class="row"><dt>Asked as</dt><dd>{meta['asked']}</dd></div>
           <div class="row"><dt>Usual split</dt><dd>{meta['split']}</dd></div>
-          <div class="row"><dt>Checked against</dt><dd>{meta['checked']}</dd></div>
+          <div class="row"><dt>Checked against</dt><dd>{build.add_abbr(meta['checked'])}</dd></div>
           <div class="row"><dt>Content checked</dt><dd>{meta['date']}. Next review due {meta['review']}.</dd></div>
           <div class="row"><dt>My revision</dt><dd>
             <div class="tracker">
