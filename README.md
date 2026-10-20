@@ -15,7 +15,7 @@ Open `index.html` to start; it links to each subject's contents page, and every 
 - `src/cvr/short/`, `src/cvr/answers/`: sources for the printable short notes and model answers (not built into the site)
 - `src/cvr-syllabus/`: hand-written parts of the syllabus-order version
 - `neuro/`: Neuro Physiotherapy notes in syllabus order (all 45 pages: chapters 1–4, assessment, adult and paediatric conditions, the treatment programme and exam skills), built by `tools/build_neuro.py` from `src/neuro/`; linked from the home page
-- `community/`: Community Physiotherapy notes in syllabus order (27 pages planned: health promotion, women's health, geriatrics, rehabilitation, disaster management, industrial health, the project synopsis and exam skills), built by `tools/build_community.py` from `src/community/`; written in order of how often each topic is asked
+- `community/`: Community Physiotherapy notes in syllabus order (all 27 pages: health promotion, women's health, geriatrics, rehabilitation, disaster management, industrial health, the project synopsis and exam skills), built by `tools/build_community.py` from `src/community/`
 - `assets/notes.css`, `assets/notes.js`: shared styles and behaviour
 - `assets/fonts/`: Atkinson Hyperlegible and Literata (SIL Open Font License)
 
