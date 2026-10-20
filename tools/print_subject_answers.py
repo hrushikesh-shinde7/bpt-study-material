@@ -110,7 +110,7 @@ def build_html(doc, cfg, mod, topics, full_pages):
 <title>{esc(cfg['name'])}: 3- and 7-mark answers</title>
 <link rel="stylesheet" href="{(build.ROOT / "assets" / "notes.css").as_uri()}">
 <link rel="stylesheet" href="{(build.ROOT / "assets" / "syllabus.css").as_uri()}">
-<style>{ps.SHORT_CSS}{pa.ANSWERS_CSS}.part-head {{ break-before: auto; margin-top: 3mm; }}</style>
+<style>{ps.SHORT_CSS}{pa.ANSWERS_CSS}.part-head {{ break-before: auto; margin-top: 3mm; }} .ans ol {{ padding-left: 4.8mm; }}</style>
 </head>
 <body class="print">
 """
