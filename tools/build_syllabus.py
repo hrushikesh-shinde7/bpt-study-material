@@ -1140,7 +1140,7 @@ def write_page(page, prev_p, next_p, asm):
     if next_p:
         nav.append(f'<a class="pagenav__next" href="{next_p.slug}.html"><span>Next in the syllabus</span>{next_p.code} {html.escape(next_p.h1)}</a>')
     pagenav = f'  <nav class="pagenav" aria-label="Other pages">\n    {"".join(nav)}\n  </nav>\n' if nav else ""
-    crumbs = [f'<a href="index.html">{SITE_NAME}</a>', crumb_for(page.chapter)]
+    crumbs = ['<a href="../index.html">Home</a>', f'<a href="index.html">{SITE_NAME}</a>', crumb_for(page.chapter)]
     if page.crumb:
         crumbs.append(page.crumb)
     up = "../"
@@ -1277,9 +1277,9 @@ def write_index():
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs">MUHS IV BPTh, 2012 syllabus</p>
+      <p class="crumbs"><a href="../index.html">Home</a> › {SITE_NAME}</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy, in syllabus order</h1>
-      <p class="lede">Chapters 1 to 11 of the MUHS syllabus, then the practical list and exam skills, in the order your college teaches them. These are the same notes as the <a href="../index.html">topic-wise version</a>, which puts Chapter 6 in the order the topics score in the papers.</p>
+      <p class="lede">Chapters 1 to 11 of the MUHS syllabus, then the practical list and exam skills, in the order your college teaches them. These are the same notes as the <a href="../cvr/index.html">topic-wise version</a>, which puts Chapter 6 in the order the topics score in the papers.</p>
       <nav class="syl-jump" aria-label="Chapters">{"".join(jump)}</nav>
     </div>
   </div>

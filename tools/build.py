@@ -4,7 +4,8 @@
 Page content lives in src/<path>.html: a metadata comment followed by the
 <section class="sec"> blocks. This script wraps each source in the shared
 page frame (top bar, contents menu, header and case sheet, previous/next
-links) and regenerates index.html from the topic list below.
+links), regenerates the CVR contents page (cvr/index.html) from the topic
+list below, and writes the site home page (index.html) that lists every subject.
 
 Run from anywhere:  python3 tools/build.py
 """
@@ -245,7 +246,7 @@ def build_page(kind, slug, ready_slugs):
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     Contents
   </button>
-  <div class="topbar__title"><a href="{up}index.html">CVR Physiotherapy</a></div>
+  <div class="topbar__title"><a href="{up}cvr/index.html">CVR Physiotherapy</a></div>
   {THEME_BTN}
   <svg class="trace" viewBox="0 0 1000 14" preserveAspectRatio="none" aria-hidden="true"><path d="{TRACE}"/></svg>
 </header>
@@ -257,14 +258,14 @@ def build_page(kind, slug, ready_slugs):
 {toc}
   </ol>
   <div class="toc__extra">
-    <a href="{up}index.html">{coll['back']}</a>
+    <a href="{up}cvr/index.html">{coll['back']}</a>
   </div>
 </nav>
 
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs"><a href="{up}index.html">CVR Physiotherapy</a> › {coll['crumb']} › {meta['crumb']}</p>
+      <p class="crumbs"><a href="{up}index.html">Home</a> › <a href="{up}cvr/index.html">CVR Physiotherapy</a> › {coll['crumb']} › {meta['crumb']}</p>
       <h1>{meta['h1']}</h1>
       <p class="lede">{meta['lede']}</p>
 
@@ -315,12 +316,12 @@ def build_index(ready, ready_cards):
 
     tiers = {1: [], 2: [], 3: []}
     for slug, tier, title, note in TOPICS:
-        tiers[tier].append(row(f"cvr/ch6/{slug}.html", slug in ready, title, note))
+        tiers[tier].append(row(f"ch6/{slug}.html", slug in ready, title, note))
     done = len(ready)
     total = len(TOPICS)
     group_html = {"cards": [], "chapters": [], "exam": []}
     for key, gtitle, gnote, section in CARD_GROUPS:
-        rows = [row(f"cvr/cards/{slug}.html", slug in ready_cards, title, note)
+        rows = [row(f"cards/{slug}.html", slug in ready_cards, title, note)
                 for slug, grp, title, note in CARDS if grp == key]
         group_html[section].append(f'      <h3>{html.escape(gtitle)}</h3>\n      <p class="meta-line">{html.escape(gnote)}</p>\n'
                                    f'      <ul class="chapter-list">\n' + "\n".join(rows) + "\n      </ul>")
@@ -328,7 +329,7 @@ def build_index(ready, ready_cards):
 
     out = HEAD.format(title="CVR Physiotherapy notes",
                       description="Exam notes for MUHS final-year BPTh Cardio-Vascular and Respiratory Physiotherapy, built from the real past papers.",
-                      up="")
+                      up="../")
     out += f"""<a class="skip" href="#content">Skip to topics</a>
 <header class="topbar">
   <div class="topbar__title">CVR Physiotherapy</div>
@@ -338,10 +339,10 @@ def build_index(ready, ready_cards):
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs">MUHS IV BPTh</p>
+      <p class="crumbs"><a href="../index.html">Home</a> › CVR Physiotherapy</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy</h1>
       <p class="lede">The whole CVR syllabus: Chapter 6 conditions in the order they score in the real papers, technique cards for the skills, devices, tests and scales the short answers ask about, the other syllabus chapters, and exam skills. {done} of {total} topics and {cards_done} of {len(CARDS)} cards ready. Jump to the <a href="#cards">technique cards</a>, <a href="#chapters">other chapters</a> or <a href="#exam">exam skills</a>.</p>
-      <p class="lede">Also on this site: the <a href="neuro/index.html">Neuro Physiotherapy notes</a>, in syllabus order, and these <a href="cvr-syllabus/index.html">CVR notes in syllabus order</a>.</p>
+      <p class="lede">Prefer your college's order? The same notes are also arranged <a href="../cvr-syllabus/index.html">by syllabus chapter (1 to 11)</a>.</p>
     </div>
   </div>
 
@@ -409,6 +410,79 @@ def build_index(ready, ready_cards):
     </div>
   </div>
 </main>
+<script src="../assets/notes.js"></script>
+</body>
+</html>
+"""
+    (ROOT / "cvr" / "index.html").write_text(out, encoding="utf-8")
+
+
+def build_home():
+    """The site home page: one entry per subject, linking to each subject's contents page."""
+    import build_neuro  # local import: build_neuro imports this module
+    neuro_ready = len(build_neuro.ready_pages())
+    neuro_total = len(build_neuro.PAGES)
+    neuro_note = (f"Paper 51412. All {neuro_total} pages, in syllabus order" if neuro_ready == neuro_total
+                  else f"Paper 51412. {neuro_ready} of {neuro_total} pages ready, in syllabus order")
+    syl_pages = len([p for p in (ROOT / "cvr-syllabus").glob("*.html") if p.name != "index.html"])
+
+    def item(href, title, ready, note):
+        status = ('<span class="status status--ready">Ready</span>' if ready
+                  else '<span class="status status--soon">Coming</span>')
+        name = f'<a class="ttl" href="{href}">{html.escape(title)}</a>' if ready else f'<span class="ttl">{html.escape(title)}</span>'
+        return f'        <li>{name}{status}<span class="meta">{html.escape(note)}</span></li>'
+
+    subjects = [
+        item("neuro/index.html", "Neuro Physiotherapy", True,
+             f"{neuro_note}: ICF, motor control and learning, assessment, adult and paediatric conditions, the treatment programme and exam skills."),
+        item("cvr/index.html", "Cardio-Vascular and Respiratory Physiotherapy, by topic", True,
+             f"Paper 51413. {len(TOPICS)} Chapter 6 conditions in the order they score in the papers, {len(CARDS)} technique cards, the other chapters and exam skills."),
+        item("cvr-syllabus/index.html", "Cardio-Vascular and Respiratory Physiotherapy, in syllabus order", True,
+             f"The same CVR notes arranged by syllabus Chapters 1 to 11 ({syl_pages} pages), in the order your college teaches them."),
+        item("", "Community Physiotherapy", False, "The next subject."),
+    ]
+    out = HEAD.format(title="BPTh study notes",
+                      description="Exam notes for MUHS final-year BPTh: Neuro Physiotherapy and Cardio-Vascular and Respiratory Physiotherapy, built from the syllabus and the 2016–2026 question papers.",
+                      up="")
+    out += f"""<a class="skip" href="#content">Skip to subjects</a>
+<header class="topbar">
+  <div class="topbar__title">BPTh study notes</div>
+  {THEME_BTN}
+</header>
+
+<main id="content">
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumbs">MUHS IV BPTh, 2012 syllabus</p>
+      <h1>Final-year BPTh study notes</h1>
+      <p class="lede">Exam notes for the MUHS final-year BPTh, written from the syllabus and the 20 question papers from Summer 2016 to Summer 2026. Choose a subject to open its contents.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="sec" id="subjects">
+      <h2>Subjects</h2>
+      <ul class="chapter-list">
+{chr(10).join(subjects)}
+      </ul>
+    </section>
+
+    <section class="sec" id="how">
+      <h2><span class="n">?</span>How to use these notes</h2>
+      <ol>
+        <li><strong>Read a page once</strong>, slowly. Open every "Why?" button.</li>
+        <li><strong>Close it and recall.</strong> Write the keywords and draw the diagrams on paper from memory, then compare.</li>
+        <li><strong>Test yourself</strong> with the questions at the end of the page. Answer before you open the answer.</li>
+        <li><strong>Come back</strong> on day 1, day 7 and day 21, and tick the boxes at the top of the page.</li>
+      </ol>
+      <p>Every page starts with "Home" at the top, so you can always come back here.</p>
+    </section>
+
+    <div class="pagefoot">
+      <p>Educational notes for exam preparation. Not medical advice. Written in original words from current textbooks and dated guidelines; sources are listed on each page.</p>
+    </div>
+  </div>
+</main>
 <script src="assets/notes.js"></script>
 </body>
 </html>
@@ -425,6 +499,7 @@ def main():
         built[kind] = ready
         print(f"built {len(ready)} of {len(coll['items'])} {kind}: {', '.join(ready)}")
     build_index(set(built["ch6"]), set(built["cards"]))
+    build_home()
 
 
 if __name__ == "__main__":

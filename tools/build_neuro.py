@@ -179,7 +179,7 @@ def write_page(page, prev_p, next_p, ready):
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs"><a href="index.html">{SITE_NAME}</a> › {PART_CRUMB[part]} › {meta['crumb']}</p>
+      <p class="crumbs"><a href="../index.html">Home</a> › <a href="index.html">{SITE_NAME}</a> › {PART_CRUMB[part]} › {meta['crumb']}</p>
       <h1><span class="h1code">{code}</span>{meta['h1']}</h1>
       <p class="lede">{meta['lede']}</p>
 
@@ -257,7 +257,7 @@ def write_index(ready, metas):
 <main id="content">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumbs">MUHS IV BPTh, 2012 syllabus</p>
+      <p class="crumbs"><a href="../index.html">Home</a> › {SITE_NAME}</p>
       <h1>Neuro Physiotherapy, in syllabus order</h1>
       <p class="lede">Every chapter of the MUHS Neuro Physiotherapy syllabus in its own order, so you can follow your classes. Each page is built from the 20 papers from Summer 2016 to Summer 2026. {(f'All {len(PAGES)} pages are ready.' if len(ready) == len(PAGES) else f'{len(ready)} of {len(PAGES)} pages are ready; the rest are being written in order of how often they are asked.')}</p>
       <nav class="syl-jump" aria-label="Parts">{"".join(jump)}</nav>

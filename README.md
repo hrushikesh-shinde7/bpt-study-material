@@ -2,11 +2,12 @@
 
 Exam notes for MUHS final-year BPTh, starting with the full Cardio-Vascular and Respiratory Physiotherapy syllabus: Chapter 6 conditions (ordered by how often they appear in 20 past MUHS papers, Summer 2016 to Summer 2026), technique cards, the other syllabus chapters (basics, cardiac and pulmonary rehabilitation, ICU conditions, basic life support), and exam skills (answer writing and the practical exam).
 
-Open `index.html` to start. The site is plain HTML, CSS and JavaScript with self-hosted fonts, so it also works offline.
+Open `index.html` to start; it links to each subject's contents page, and every page's breadcrumb starts with "Home". The site is plain HTML, CSS and JavaScript with self-hosted fonts, so it also works offline.
 
 ## Structure
 
-- `index.html`: the home page listing every page
+- `index.html`: the site home page, listing each subject (Neuro, CVR by topic, CVR by syllabus, Community to come)
+- `cvr/index.html`: the CVR contents page listing every CVR page
 - `cvr/ch6/`: one page per condition
 - `cvr/cards/`: technique cards, other syllabus chapters and exam-skills pages
 - `cvr-syllabus/`: the same notes in the order of the MUHS syllabus (see below)
