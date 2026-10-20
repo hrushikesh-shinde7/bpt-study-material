@@ -259,7 +259,7 @@ def write_index(ready, metas):
     <div class="wrap">
       <p class="crumbs"><a href="../index.html">Home</a> › {SITE_NAME}</p>
       <h1>Neuro Physiotherapy, in syllabus order</h1>
-      <p class="lede">Every chapter of the MUHS Neuro Physiotherapy syllabus in its own order, so you can follow your classes. Each page is built from the 20 papers from Summer 2016 to Summer 2026. {(f'All {len(PAGES)} pages are ready.' if len(ready) == len(PAGES) else f'{len(ready)} of {len(PAGES)} pages are ready; the rest are being written in order of how often they are asked.')}</p>
+      <p class="lede">Every chapter of the MUHS Neuro Physiotherapy syllabus in its own order, so you can follow your classes. Each page is built from the 20 papers from Summer 2016 to Summer 2026. {(f'All {len(PAGES)} pages are ready.' if len(ready) == len(PAGES) else f'{len(ready)} of {len(PAGES)} pages {"is" if len(ready) == 1 else "are"} ready; the rest are being written in order of how often they are asked.')}</p>
       <nav class="syl-jump" aria-label="Parts">{"".join(jump)}</nav>
     </div>
   </div>

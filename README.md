@@ -6,7 +6,7 @@ Open `index.html` to start; it links to each subject's contents page, and every 
 
 ## Structure
 
-- `index.html`: the site home page, listing each subject (Neuro, CVR in syllabus order, Community to come)
+- `index.html`: the site home page, listing each subject (Neuro, CVR in syllabus order, Community)
 - `cvr/index.html`: the topic-wise CVR contents page (still built, but no longer linked from the home page)
 - `cvr/ch6/`: one page per condition
 - `cvr/cards/`: technique cards, other syllabus chapters and exam-skills pages
@@ -15,6 +15,7 @@ Open `index.html` to start; it links to each subject's contents page, and every 
 - `src/cvr/short/`, `src/cvr/answers/`: sources for the printable short notes and model answers (not built into the site)
 - `src/cvr-syllabus/`: hand-written parts of the syllabus-order version
 - `neuro/`: Neuro Physiotherapy notes in syllabus order (all 45 pages: chapters 1–4, assessment, adult and paediatric conditions, the treatment programme and exam skills), built by `tools/build_neuro.py` from `src/neuro/`; linked from the home page
+- `community/`: Community Physiotherapy notes in syllabus order (27 pages planned: health promotion, women's health, geriatrics, rehabilitation, disaster management, industrial health, the project synopsis and exam skills), built by `tools/build_community.py` from `src/community/`; written in order of how often each topic is asked
 - `assets/notes.css`, `assets/notes.js`: shared styles and behaviour
 - `assets/fonts/`: Atkinson Hyperlegible and Literata (SIL Open Font License)
 

@@ -425,9 +425,16 @@ def build_home():
     neuro_note = (f"Paper 51412. All {neuro_total} pages, in syllabus order" if neuro_ready == neuro_total
                   else f"Paper 51412. {neuro_ready} of {neuro_total} pages ready, in syllabus order")
     syl_pages = len([p for p in (ROOT / "cvr-syllabus").glob("*.html") if p.name != "index.html"])
+    import build_community  # local import: build_community imports this module
+    comm_ready = len(build_community.ready_pages())
+    comm_total = len(build_community.PAGES)
+    comm_note = (f"Paper 51414. All {comm_total} pages, in syllabus order: health promotion, women's health, geriatrics, rehabilitation, disaster management, industrial health, the synopsis and exam skills."
+                 if comm_ready == comm_total else
+                 f"Paper 51414. {comm_ready} of {comm_total} pages ready, in syllabus order; the rest are being written in order of how often they are asked.")
 
-    def item(href, title, ready, note):
-        status = ('<span class="status status--ready">Ready</span>' if ready
+    def item(href, title, ready, note, partial=False):
+        status = ('<span class="status status--soon">In progress</span>' if partial
+                  else '<span class="status status--ready">Ready</span>' if ready
                   else '<span class="status status--soon">Coming</span>')
         name = f'<a class="ttl" href="{href}">{html.escape(title)}</a>' if ready else f'<span class="ttl">{html.escape(title)}</span>'
         return f'        <li>{name}{status}<span class="meta">{html.escape(note)}</span></li>'
@@ -437,7 +444,8 @@ def build_home():
              f"{neuro_note}: ICF, motor control and learning, assessment, adult and paediatric conditions, the treatment programme and exam skills."),
         item("cvr-syllabus/index.html", "Cardio-Vascular and Respiratory Physiotherapy", True,
              f"Paper 51413. {syl_pages} pages in syllabus order, Chapters 1 to 11, then the practical list and exam skills."),
-        item("", "Community Physiotherapy", False, "The next subject."),
+        (item("community/index.html", "Community Physiotherapy", True, comm_note, partial=comm_ready < comm_total) if comm_ready else
+         item("", "Community Physiotherapy", False, "Paper 51414. Being written now, in syllabus order.")),
     ]
     out = HEAD.format(title="BPTh study notes",
                       description="Exam notes for MUHS final-year BPTh: Neuro Physiotherapy and Cardio-Vascular and Respiratory Physiotherapy, built from the syllabus and the 2016–2026 question papers.",
