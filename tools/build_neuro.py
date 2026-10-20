@@ -75,7 +75,7 @@ PAGES = [
     ("5b-development", "5B", "Developmental neurology: milestones, reflexes and reactions", "5B", "Milestones as 7 marks in 3 papers; ATNR, parachute and other reflexes."),
     ("5b-1-cerebral-palsy", "5B(1)", "Cerebral palsy", "5B", "13 long cases in 20 papers, the most of any topic."),
     ("5b-2-down-syndrome", "5B(2)", "Down's syndrome", "5B", "3 seven-mark questions."),
-    ("5b-3-spina-bifida", "5B(3)", "Neural tube defects: spina bifida and hydrocephalus", "5B", "12 short questions."),
+    ("5b-3-spina-bifida", "5B(3)", "Neural tube defects: spina bifida and hydrocephalus", "5B", "11 short questions in 9 papers."),
     ("5b-4-brachial-plexus", "5B(4)", "Obstetric brachial plexus injury", "5B", "A 6-month-old with Erb's palsy (S19)."),
     ("5b-5-infections", "5B(5)", "Infections of the nervous system", "5B", "Kernig's and Brudzinski's signs twice."),
     ("5b-6-pprp", "5B(6)", "Post-polio residual paralysis", "5B", "PPRP in 4 papers."),
