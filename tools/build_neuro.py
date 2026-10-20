@@ -62,7 +62,7 @@ PAGES = [
     ("5a-l-autonomic", "5A(l)", "Disorders of the autonomic nervous system", "5A", "Horner's syndrome; blood-pressure disorders; autonomic dysreflexia."),
     ("5a-m-psychosomatic", "5A(m)", "Psychosomatic pain and paralysis", "5A", "In the syllabus; not asked on its own in 2016–2026."),
     ("tp1-electrotherapy", "TP1", "Electrotherapy in neurological rehabilitation", "TP", "Pain relief and functional re-education with electrical stimulation."),
-    ("tp2-approaches", "TP2", "Neurotherapeutic approaches: Brunnstrom, Rood, Bobath, MRP, PNF and CIMT", "TP", "Rood, Bobath, MRP and PNF in 7 papers."),
+    ("tp2-approaches", "TP2", "Neurotherapeutic approaches: Brunnstrom, Rood, Bobath, MRP, PNF and CIMT", "TP", "Rood, Bobath, MRP and PNF in 8 papers."),
     ("tp2-tone", "TP2", "Managing tone: spasticity, rigidity and hypotonia", "TP", "Tone techniques in 9 papers."),
     ("tp2-balance-coordination", "TP2", "Balance and coordination training", "TP", "Balance strategies and training in 4 papers."),
     ("tp3-equipment", "TP3", "Tools and adaptive equipment for neuro-rehabilitation", "TP", "Balls, tilt boards, bolsters, wedges, benches and mats."),
