@@ -33,6 +33,45 @@ def esc(s):
     return html.escape(s, quote=True)
 
 
+# Extra abbreviations for the printed lists only (the website spells these out in the text).
+PRINT_ABBR = {
+    "AAM": "Ayushman Arogya Mandir", "ACOG": "American College of Obstetricians and Gynecologists",
+    "ADAPT": "Able Disabled All People Together (formerly the Spastics Society of India)",
+    "AIIMS": "All India Institute of Medical Sciences", "ANOVA": "Analysis of variance",
+    "BIA": "Bioelectrical impedance analysis", "BMR": "Basal metabolic rate",
+    "BMVSS": "Bhagwan Mahaveer Viklang Sahayata Samiti (Jaipur foot)", "CTRI": "Clinical Trials Registry–India",
+    "DDMA": "District Disaster Management Authority", "DDRC": "District Disability Rehabilitation Centre",
+    "DEIC": "District Early Intervention Centre", "EMG": "Electromyography",
+    "ESI": "Employees' State Insurance", "ESIC": "Employees' State Insurance Corporation",
+    "FES-I": "Falls Efficacy Scale–International", "FINER": "Feasible, interesting, novel, ethical, relevant (a good research question)",
+    "FITT-VP": "Frequency, intensity, time, type, volume and progression", "FSH": "Follicle-stimulating hormone",
+    "GDS": "Geriatric Depression Scale", "GMFCS": "Gross Motor Function Classification System",
+    "IADL": "Instrumental activities of daily living", "IAP": "Indian Academy of Pediatrics (growth charts)",
+    "IARC": "International Agency for Research on Cancer", "ICDS": "Integrated Child Development Services",
+    "ICIDH": "International Classification of Impairments, Disabilities and Handicaps (WHO, 1980)",
+    "ICIQ": "International Consultation on Incontinence Questionnaire", "ICRC": "International Committee of the Red Cross",
+    "ICRP": "International Commission on Radiological Protection", "ICT": "Information and communication technology",
+    "IEA": "International Ergonomics Association", "IGNOAPS": "Indira Gandhi National Old Age Pension Scheme",
+    "ILO": "International Labour Organization", "JSSK": "Janani Shishu Suraksha Karyakram", "JSY": "Janani Suraksha Yojana",
+    "LH": "Luteinising hormone", "MNA": "Mini Nutritional Assessment", "MRI": "Magnetic resonance imaging",
+    "MSDs": "Musculoskeletal disorders", "NCD": "Non-communicable disease", "NDFDC": "National Divyangjan Finance and Development Corporation",
+    "NDI": "Neck Disability Index", "NDRF": "National Disaster Response Force", "NFHS-5": "National Family Health Survey, fifth round (2019–21)",
+    "NICE": "National Institute for Health and Care Excellence (UK)", "NIOSH": "National Institute for Occupational Safety and Health (USA)",
+    "NLEP": "National Leprosy Eradication Programme", "NPCBVI": "National Programme for Control of Blindness and Visual Impairment",
+    "NPHCE": "National Programme for Health Care of the Elderly", "NPPCD": "National Programme for Prevention and Control of Deafness",
+    "NPRS": "Numeric Pain Rating Scale", "OCRA": "Occupational Repetitive Actions index", "OWAS": "Ovako Working Posture Analysis System",
+    "PCPNDT": "Pre-Conception and Pre-Natal Diagnostic Techniques (Act)", "PERFECT": "Power, endurance, repetitions, fast contractions, every contraction timed (pelvic floor grading)",
+    "PFMT": "Pelvic floor muscle training", "PICO": "Population, intervention, comparison, outcome", "PM-JAY": "Pradhan Mantri Jan Arogya Yojana",
+    "PMF": "Progressive massive fibrosis", "PMMVY": "Pradhan Mantri Matru Vandana Yojana", "PMSMA": "Pradhan Mantri Surakshit Matritva Abhiyan",
+    "POMA": "Performance-Oriented Mobility Assessment (Tinetti)", "POP-Q": "Pelvic Organ Prolapse Quantification",
+    "QEC": "Quick Exposure Check", "RBSK": "Rashtriya Bal Swasthya Karyakram", "RCT": "Randomised controlled trial",
+    "SDMA": "State Disaster Management Authority", "SPPB": "Short Physical Performance Battery", "SSI": "Spastics Society of India (now ADAPT)",
+    "START": "Simple Triage and Rapid Treatment", "UIP": "Universal Immunisation Programme", "UN": "United Nations",
+    "UNESCO": "United Nations Educational, Scientific and Cultural Organization", "UTI": "Urinary tract infection", "UV": "Ultraviolet",
+    "YMCA": "Young Men's Christian Association",
+}
+
+
 def index_label(title):
     """Short label for the paper index: drop bracketed asides, keep the part
     before the first colon or semicolon."""
@@ -217,7 +256,7 @@ def build_html(doc, cfg, mod, topics, full_pages):
     pi += ["  </div>", "</section>"]
 
     text = " ".join(re.sub(r"<[^>]+>", " ", a["title"] + " " + a["body"]) for a in all_arts)
-    merged = {**ps.SHORT_ABBR, **build.ABBR}
+    merged = {**PRINT_ABBR, **ps.SHORT_ABBR, **build.ABBR}
     used = sorted(((k, v) for k, v in merged.items() if re.search(rf"(?<![\w-]){re.escape(k)}(?![\w-])", text)), key=lambda kv: kv[0].lower())
     abbr = [f'<section class="abbr-list" id="abbr--top">{doc.marker("abbr--top")}', "  <h1>Abbreviations</h1>", '  <div class="abbr-cols">']
     abbr += [f"    <p><b>{esc(k)}</b>: {esc(v)}</p>" for k, v in used]

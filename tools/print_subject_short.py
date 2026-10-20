@@ -142,7 +142,7 @@ def build_html(doc, cfg, mod, items, full_pages):
 </article>""")
 
     text = " ".join(re.sub(r"<[^>]+>", " ", b) for *_, b in items)
-    merged = {**ps.SHORT_ABBR, **build.ABBR}
+    merged = {**psa.PRINT_ABBR, **ps.SHORT_ABBR, **build.ABBR}
     used = sorted(((k, v) for k, v in merged.items() if re.search(rf"(?<![\w-]){re.escape(k)}(?![\w-])", text)), key=lambda kv: kv[0].lower())
     abbr = [f'<section class="abbr-list" id="abbr--top">{doc.marker("abbr--top")}', "  <h1>Abbreviations</h1>", '  <div class="abbr-cols">']
     abbr += [f"    <p><b>{esc(k)}</b>: {esc(v)}</p>" for k, v in used]
