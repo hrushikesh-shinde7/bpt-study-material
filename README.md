@@ -6,8 +6,8 @@ Open `index.html` to start; it links to each subject's contents page, and every 
 
 ## Structure
 
-- `index.html`: the site home page, listing each subject (Neuro, CVR by topic, CVR by syllabus, Community to come)
-- `cvr/index.html`: the CVR contents page listing every CVR page
+- `index.html`: the site home page, listing each subject (Neuro, CVR in syllabus order, Community to come)
+- `cvr/index.html`: the topic-wise CVR contents page (still built, but no longer linked from the home page)
 - `cvr/ch6/`: one page per condition
 - `cvr/cards/`: technique cards, other syllabus chapters and exam-skills pages
 - `cvr-syllabus/`: the same notes in the order of the MUHS syllabus (see below)

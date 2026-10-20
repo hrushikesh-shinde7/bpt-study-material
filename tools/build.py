@@ -435,10 +435,8 @@ def build_home():
     subjects = [
         item("neuro/index.html", "Neuro Physiotherapy", True,
              f"{neuro_note}: ICF, motor control and learning, assessment, adult and paediatric conditions, the treatment programme and exam skills."),
-        item("cvr/index.html", "Cardio-Vascular and Respiratory Physiotherapy, by topic", True,
-             f"Paper 51413. {len(TOPICS)} Chapter 6 conditions in the order they score in the papers, {len(CARDS)} technique cards, the other chapters and exam skills."),
-        item("cvr-syllabus/index.html", "Cardio-Vascular and Respiratory Physiotherapy, in syllabus order", True,
-             f"The same CVR notes arranged by syllabus Chapters 1 to 11 ({syl_pages} pages), in the order your college teaches them."),
+        item("cvr-syllabus/index.html", "Cardio-Vascular and Respiratory Physiotherapy", True,
+             f"Paper 51413. {syl_pages} pages in syllabus order, Chapters 1 to 11, then the practical list and exam skills."),
         item("", "Community Physiotherapy", False, "The next subject."),
     ]
     out = HEAD.format(title="BPTh study notes",

@@ -1279,7 +1279,7 @@ def write_index():
     <div class="wrap">
       <p class="crumbs"><a href="../index.html">Home</a> › {SITE_NAME}</p>
       <h1>Cardio-Vascular and Respiratory Physiotherapy, in syllabus order</h1>
-      <p class="lede">Chapters 1 to 11 of the MUHS syllabus, then the practical list and exam skills, in the order your college teaches them. These are the same notes as the <a href="../cvr/index.html">topic-wise version</a>, which puts Chapter 6 in the order the topics score in the papers.</p>
+      <p class="lede">Chapters 1 to 11 of the MUHS syllabus, then the practical list and exam skills, in the order your college teaches them.</p>
       <nav class="syl-jump" aria-label="Chapters">{"".join(jump)}</nav>
     </div>
   </div>
