@@ -500,6 +500,29 @@ def build_home():
         (item("community/index.html", "Community Physiotherapy", True, comm_note, partial=comm_ready < comm_total) if comm_ready else
          item("", "Community Physiotherapy", False, "Paper 51414. Being written now, in syllabus order.")),
     ]
+    pdfs = [
+        ("Neuro Physiotherapy", [("neuro-complete-notes.pdf", "Complete notes"), ("neuro-3-and-7-mark-answers.pdf", "3 and 7 mark answers"), ("neuro-short-notes.pdf", "Short notes")]),
+        ("Cardio-Vascular and Respiratory Physiotherapy", [("cvr-syllabus-order-notes.pdf", "Complete notes, syllabus order"), ("cvr-topic-notes.pdf", "Complete notes, by topic"), ("cvr-3-and-7-mark-answers.pdf", "3 and 7 mark answers"), ("cvr-short-notes.pdf", "Short notes")]),
+        ("Community Physiotherapy", [("community-complete-notes.pdf", "Complete notes"), ("community-3-and-7-mark-answers.pdf", "3 and 7 mark answers"), ("community-short-notes.pdf", "Short notes")]),
+    ]
+    dl = []
+    for subj, files in pdfs:
+        links = []
+        for fname, label in files:
+            f = ROOT / "downloads" / fname
+            if f.exists():
+                links.append(f'<a href="downloads/{fname}" download>{html.escape(label)}</a> <span class="meta">({f.stat().st_size / 1e6:.1f} MB)</span>')
+        if links:
+            dl.append(f'        <li><span class="ttl">{html.escape(subj)}</span><span class="meta">{"<br>".join(links)}</span></li>')
+    downloads = ("""
+    <section class="sec" id="downloads">
+      <h2>Download the PDFs</h2>
+      <p>Printable A4 versions of the notes, for reading offline or printing. Tap a link to save the file.</p>
+      <ul class="chapter-list">
+""" + "\n".join(dl) + """
+      </ul>
+    </section>
+""") if dl else ""
     out = HEAD.format(title="BPTh study notes",
                       description="Exam notes for MUHS final-year BPTh: Neuro Physiotherapy and Cardio-Vascular and Respiratory Physiotherapy, built from the syllabus and the 2016–2026 question papers.",
                       up="")
@@ -525,7 +548,7 @@ def build_home():
 {chr(10).join(subjects)}
       </ul>
     </section>
-
+{downloads}
     <section class="sec" id="how">
       <h2><span class="n">?</span>How to use these notes</h2>
       <ol>
