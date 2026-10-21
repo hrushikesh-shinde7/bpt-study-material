@@ -514,15 +514,48 @@ def build_home():
                 links.append(f'<a href="downloads/{fname}" download>{html.escape(label)}</a> <span class="meta">({f.stat().st_size / 1e6:.1f} MB)</span>')
         if links:
             dl.append(f'        <li><span class="ttl">{html.escape(subj)}</span><span class="meta">{"<br>".join(links)}</span></li>')
+    def paper_key(f):
+        import re as _re
+        m = _re.search(r"(summer|winter)-(\d{4})", f.stem)
+        return (int(m.group(2)), m.group(1) == "winter") if m else (int(f.stem[-4:]), True)
+
+    def paper_label(f):
+        import re as _re
+        m = _re.search(r"(summer|winter)-(\d{4})", f.stem)
+        if not m:
+            return f"{f.stem[-4:]} (phase II)"
+        lab = f"{m.group(1).title()} {m.group(2)}"
+        return lab + (" (repeat of Summer 2023)" if f.stem == "winter-2023" else "")
+
+    papers = []
+    for folder, subj in [("neuro", "Neuro Physiotherapy (51412)"), ("cvr", "Cardio-Vascular and Respiratory Physiotherapy (51413)"),
+                         ("community", "Community Physiotherapy (51414)"), ("msk", "Musculoskeletal Physiotherapy (51411)"),
+                         ("all-subjects", "All four subjects in one file (college session copies, 2016–2026)")]:
+        files = sorted((ROOT / "downloads" / "papers" / folder).glob("*.pdf"), key=paper_key)
+        if files:
+            links = ", ".join(f'<a href="downloads/papers/{folder}/{f.name}" download>{html.escape(paper_label(f))}</a>' for f in files)
+            papers.append(f'        <li><span class="ttl">{html.escape(subj)}</span><span class="meta">{links}</span></li>')
+    if papers:
+        dl.append("")
     downloads = ("""
     <section class="sec" id="downloads">
       <h2>Download the PDFs</h2>
       <p>Printable A4 versions of the notes, for reading offline or printing. Tap a link to save the file.</p>
       <ul class="chapter-list">
-""" + "\n".join(dl) + """
+""" + "\n".join(d for d in dl if d) + """
       </ul>
     </section>
 """) if dl else ""
+    if papers:
+        downloads += ("""
+    <section class="sec" id="papers">
+      <h2>Past question papers</h2>
+      <p>The MUHS IV BPTh question papers, 2016–2026, as scanned copies. The single-subject copies come from an unofficial archive; the all-subject files come from a college's past-paper page.</p>
+      <ul class="chapter-list">
+""" + "\n".join(papers) + """
+      </ul>
+    </section>
+""")
     out = HEAD.format(title="BPTh study notes",
                       description="Exam notes for MUHS final-year BPTh: Neuro Physiotherapy and Cardio-Vascular and Respiratory Physiotherapy, built from the syllabus and the 2016–2026 question papers.",
                       up="")
